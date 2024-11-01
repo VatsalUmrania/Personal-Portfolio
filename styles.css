@@ -24,6 +24,7 @@ html{
     background-color: dodgerblue;
     padding: 50vh;
     height: 100vh;
+    width:auto;
 }
 .nav{
     background-color: #FBEAEB;
