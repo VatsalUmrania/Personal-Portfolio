@@ -124,3 +124,43 @@ img:hover{
     height: 30vh;
     width: 30vh;
 }
+
+@media only screen and (max-width: 767px) {
+    header {
+        font-size: 8vw; /* Increase font size for smaller screens */
+    }
+
+    .nav {
+        padding-left: 5%; /* Adjust padding for nav */
+        font-size: 20px; /* Decrease font size */
+        text-align: center; /* Center align nav items */
+    }
+
+    .About,
+    .Projects,
+    .Contact {
+        padding: 20vh 5%; /* Reduce padding */
+        height: auto; /* Allow content to dictate height */
+    }
+
+    a {
+        font-size: 5vh; /* Adjust link font size */
+    }
+
+    .contact-links {
+        padding-top: 20vh; /* Adjust padding */
+    }
+
+    .insta-logo,
+    .github-logo,
+    .mail-logo,
+    .call-logo {
+        height: 8vh; /* Smaller logos */
+        width: 8vh;
+    }
+
+    .cet-logo {
+        height: 20vh; /* Smaller cet logo */
+        width: 20vh;
+    }
+}
