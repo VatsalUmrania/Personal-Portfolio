@@ -1,0 +1,109 @@
+@import 'https://fonts.googleapis.com/css?family=Lato:400,700';
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #aaa;
+    font-family: 'Lato',sans-serif;
+}
+
+#page-wrapper{
+    position: relative;
+    text-align: center;
+}
+a{
+    color:rgb(252, 252, 252);
+    text-decoration: none;
+}
+li{
+    display: inline-block;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: normal;
+    padding-left: 10px;
+}
+header{
+    top:0;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    color: #2b2d42;
+    min-height: 75px;
+    background-color: #2b2d42;
+    text-transform: uppercase;
+} 
+li{
+    list-style: none;
+} 
+nav{
+    font-weight: 400;
+}
+#about{
+    min-height:100vh;
+    background-color: lightskyblue;
+    text-align: center;
+    padding:40vh;
+}
+#projects{
+    min-height: 100vh;
+    background-color: #c5ff5968;
+    text-align: center;
+    padding:40vh;
+}
+#contact{
+    min-height: 100vh;
+    background-color: #f7c66c68;
+    text-align: center;
+    padding:40vh;
+}
+img{
+    width: 10vh;
+    border-radius: 37px;
+}
+img:hover{
+    transform: scale(1.1);
+    transition-duration: .1s;
+    transition-timing-function: ease-in-out;
+}
+.cet-logo{
+    height: 30vh;
+    width: 30vh;
+    border-radius: none;
+}
+
+@media screen and (max-width:426px){
+    #page-wrapper{
+        position: relative;
+        width: 115.5%;
+    }
+    #about,#projects,#contact{
+        border:0%;
+        margin: 0;
+        text-align:center;
+        padding-left:10vh;
+        padding-right: 10vh;
+        width: 115.5%;
+        display:flex;
+        justify-content: space-around;
+        vertical-align: middle;
+    }
+    img{
+        display: block;
+    }
+} 
+nav a{
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    position: relative;
+    transition: background-color 0.3s, color 0.3s;
+}
+  
+nav a:hover {
+    background-color: #3498db;
+    color: white;
+}
+  
