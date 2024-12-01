@@ -71,7 +71,7 @@ img:hover{
 .cet-logo{
     height: 30vh;
     width: 30vh;
-    border-radius: none;
+    border-radius: 0px;
 }
 
 @media screen and (min-width:426px) and (max-width:none){
