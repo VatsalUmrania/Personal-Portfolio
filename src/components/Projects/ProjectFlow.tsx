@@ -19,8 +19,13 @@ const ProjectFlow = ({ project }: ProjectFlowProps) => {
                 zoomOnScroll={false}
                 panOnDrag={false}
                 attributionPosition="bottom-right"
+                colorMode="dark"
+                proOptions={{ hideAttribution: true }}
+
             >
-                <Background />
+                <Background
+
+                />
                 <Controls showInteractive={false} />
             </ReactFlow>
         </div>

@@ -16,11 +16,17 @@ const SkillGroup = ({ category, skills, hint, onSkillHover, onSkillLeave }: Skil
                 {skills.map((skill, index) => (
                     <span
                         key={index}
-                        className="cursor-pointer transition-colors text-[rgb(var(--text-primary-rgb))] w-fit hover:text-[rgb(var(--accent-rgb))]"
+                        className="flex items-center gap-2 cursor-pointer transition-colors text-[rgb(var(--text-primary-rgb))] w-fit hover:text-[rgb(var(--accent-rgb))]"
                         onMouseEnter={() => onSkillHover(skill.filterTag)}
                         onMouseLeave={onSkillLeave}
                     >
-                        {skill.name}
+                        {skill.icon && (
+                            <skill.icon
+                                className="text-sm opacity-60"
+                                aria-hidden="true"
+                            />
+                        )}
+                        <span>{skill.name}</span>
                     </span>
                 ))}
             </div>

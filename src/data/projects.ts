@@ -1,11 +1,26 @@
 import { Project } from '../types/project';
+import {
+    SiNextdotjs,
+    SiReact,
+    SiSocketdotio,
+    SiPrisma,
+    SiPostgresql,
+    SiMongodb,
+    SiSolidity
+} from 'react-icons/si';
+import { FiCpu, FiCloud, FiCode } from 'react-icons/fi';
 
 export const projects: Project[] = [
     {
         id: 1,
         title: 'Vibe AI Builder',
         problem: 'Converting natural language prompts into deployable Next.js apps with real-time preview.',
-        techStack: ['Next.js', 'tRPC', 'Inngest', 'E2B'],
+        techStack: [
+            { name: 'Next.js', icon: SiNextdotjs },
+            { name: 'tRPC', icon: FiCode },
+            { name: 'Inngest', icon: FiCpu },
+            { name: 'E2B', icon: FiCloud },
+        ],
         tags: ['nextjs', 'ai', 'trpc', 'cloud'],
         githubUrl: 'https://github.com/VatsalUmrania/vibe',
         architecture: {
@@ -34,19 +49,24 @@ export const projects: Project[] = [
             architectureDiagram: `[User Prompt]
     ↓
 [Next.js App Router] --(tRPC)--> [Inngest Workflow]
-                                      |
-                                  (Orchestration)
-                                      |
-                                      v
-                                [E2B Sandbox]
-                                (Code Execution & Preview)`,
+                                       |
+                                   (Orchestration)
+                                       |
+                                       v
+                                 [E2B Sandbox]
+                                 (Code Execution & Preview)`,
         },
     },
     {
         id: 2,
         title: 'Blockchain Based Verification System',
         problem: 'Decentralized document verification to prevent tampering and eliminate centralized intermediaries.',
-        techStack: ['Solidity', 'Web3.js', 'React', 'MongoDB'],
+        techStack: [
+            { name: 'Solidity', icon: SiSolidity },
+            { name: 'Web3.js', icon: FiCode },
+            { name: 'React', icon: SiReact },
+            { name: 'MongoDB', icon: SiMongodb },
+        ],
         tags: ['blockchain', 'react', 'solidity', 'web3'],
         githubUrl: 'https://github.com/VatsalUmrania/blockchain-document-verification',
         architecture: {
@@ -87,7 +107,12 @@ export const projects: Project[] = [
         id: 3,
         title: 'CollabIDE',
         problem: 'Enabling real-time collaborative code editing with low latency synchronization.',
-        techStack: ['Socket.IO', 'Monaco Editor', 'Prisma', 'PostgreSQL'],
+        techStack: [
+            { name: 'Socket.IO', icon: SiSocketdotio },
+            { name: 'Monaco Editor', icon: FiCode },
+            { name: 'Prisma', icon: SiPrisma },
+            { name: 'PostgreSQL', icon: SiPostgresql },
+        ],
         tags: ['socketio', 'real-time', 'postgres', 'node'],
         githubUrl: 'https://github.com/VatsalUmrania/collabide',
         architecture: {
@@ -115,12 +140,12 @@ export const projects: Project[] = [
                 'Implemented a WebSocket server using Socket.IO to broadcast operational transforms. Integrated Monaco Editor for a VS Code-like experience and secured the platform with OAuth + JWT role-based access.',
             architectureDiagram: `[User Typing]
     ↓
-[Monaco Editor] --(Socket Event)--> [Node.js Server]
-                                         |
-                                     (Broadcast)
-                                         |
-                                         v
-                                  [Connected Peers]`,
+[Monaco Editor]--(Socket Event)--> [Node.js Server]
+    |
+    (Broadcast)
+    |
+    v
+    [Connected Peers]`,
         },
     },
 ];

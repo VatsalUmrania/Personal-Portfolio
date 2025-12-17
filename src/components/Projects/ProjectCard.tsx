@@ -40,8 +40,17 @@ const ProjectCard = ({ project, isActive, isDimmed, isHighlighted, onOpenCaseStu
                 </div>
                 <div className="flex flex-wrap gap-4 mb-auto">
                     {project.techStack.map((tech, index) => (
-                        <span key={index} className="font-mono text-xs text-[rgb(var(--text-secondary-rgb))]">
-                            {tech}
+                        <span
+                            key={index}
+                            className="flex items-center gap-1.5 font-mono text-xs text-[rgb(var(--text-secondary-rgb))]"
+                        >
+                            {tech.icon && (
+                                <tech.icon
+                                    className="text-xs opacity-50"
+                                    aria-hidden="true"
+                                />
+                            )}
+                            <span>{tech.name}</span>
                         </span>
                     ))}
                 </div>
