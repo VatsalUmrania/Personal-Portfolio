@@ -6,6 +6,7 @@ import SkillsSection from './components/Skills/SkillsSection';
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
 import { Project } from './types/project';
+import EngineeringPhilosophy from './components/Engineering/EngineeringPhilosophy';
 
 function App() {
     const [focusProject, setFocusProject] = useState<Project | null>(null);
@@ -42,6 +43,7 @@ function App() {
                 <ProjectsSection activeFilter={activeFilter} onOpenCaseStudy={handleOpenCaseStudy} />
             </div>
             <SkillsSection onSkillHover={handleSkillHover} onSkillLeave={handleSkillLeave} />
+            <EngineeringPhilosophy />
             <About />
             <Contact />
             <FocusMode project={focusProject} onClose={handleCloseFocusMode} />
