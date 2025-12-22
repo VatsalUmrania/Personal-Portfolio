@@ -2,33 +2,48 @@ import { siteConfig } from '../../data/site';
 
 const Contact = () => {
     return (
-        <section className="px-container-x max-w-400 mx-auto py-35 mb-16">
-            <h2 className="mb-8 text-[rgb(var(--text-secondary-rgb))]">CONNECT</h2>
-            <div className="flex gap-16 mt-12 font-mono text-sm">
-                <a
-                    href={`mailto:${siteConfig.contact.email}`}
-                    className="text-[rgb(var(--text-secondary-rgb))] transition-colors hover:text-[rgb(var(--text-primary-rgb))] hover:underline underline-offset-4"
-                >
-                    {siteConfig.contact.email}
-                </a>
-                <a
-                    href={siteConfig.contact.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[rgb(var(--text-secondary-rgb))] transition-colors hover:text-[rgb(var(--text-primary-rgb))] hover:underline underline-offset-4"
-                >
-                    {siteConfig.contact.github.replace('https://', '')}
-                </a>
-                <a
-                    href={siteConfig.contact.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[rgb(var(--text-secondary-rgb))] transition-colors hover:text-[rgb(var(--text-primary-rgb))] hover:underline underline-offset-4"
-                >
-                    {siteConfig.contact.linkedin.replace('https://', '')}
-                </a>
+        <div className="p-12 md:p-24 flex flex-col justify-between h-full bg-surface/30">
+            <div>
+                <span className="font-mono text-xs text-accent tracking-widest uppercase block mb-8">
+                    // CONNECT
+                </span>
+                <h2 className="text-3xl font-medium text-text-primary mb-8">
+                    Initiate Handshake
+                </h2>
+                <div className="flex flex-col gap-4 font-mono text-sm">
+                    <a
+                        href={`mailto:${siteConfig.contact.email}`}
+                        className="flex items-center gap-4 text-text-muted hover:text-accent transition-colors group"
+                    >
+                        <span className="w-2 h-2 bg-text-muted group-hover:bg-accent rounded-full transition-colors" />
+                        {siteConfig.contact.email}
+                    </a>
+                    <a
+                        href={siteConfig.contact.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-4 text-text-muted hover:text-accent transition-colors group"
+                    >
+                        <span className="w-2 h-2 bg-text-muted group-hover:bg-accent rounded-full transition-colors" />
+                        github.com/VatsalUmrania
+                    </a>
+                    <a
+                        href={siteConfig.contact.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-4 text-text-muted hover:text-accent transition-colors group"
+                    >
+                        <span className="w-2 h-2 bg-text-muted group-hover:bg-accent rounded-full transition-colors" />
+                        linkedin.com/in/vatsal-umrania
+                    </a>
+                </div>
             </div>
-        </section>
+
+            <div className="mt-12 pt-12 border-t border-dashed border-border-color font-mono text-xs text-text-muted text-right">
+                <span className="block mb-1">SYSTEM STATUS</span>
+                All Systems Operational
+            </div>
+        </div>
     );
 };
 

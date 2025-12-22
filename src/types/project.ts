@@ -11,31 +11,28 @@ export interface Metric {
     label: string;
 }
 
-// MANDATORY: The "Senior Engineer" fields
 export interface EngineeringDetails {
-    problemStatement: string; // The specific user pain point
-    constraints: string[];    // e.g., "Must run on Edge", "API rate limits"
+    problemStatement: string;
+    constraints: string[];
     technicalDecisions: {
         decision: string;
-        rationale: string;    // Why X instead of Y?
+        rationale: string;
     }[];
-    tradeoffs: string[];      // What did we sacrifice? (e.g. "Consistency for Availability")
-    mistakes: string[];       // Humble-brag: What broke and how you fixed it
+    tradeoffs: string[];
+    mistakes: string[];
 }
 
 export interface CaseStudy {
     category: string;
     metrics: Metric[];
-    // We merge the old strings into the new structure or keep them for summary
-    summary: string; 
+    summary: string;
     details: EngineeringDetails;
-    architectureDiagram?: string; // ASCII or image ref
 }
 
 export interface Project {
     id: number;
     title: string;
-    subtitle: string; // High-level "hook"
+    subtitle: string;
     techStack: TechStackItem[];
     tags: string[];
     githubUrl: string;

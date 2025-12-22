@@ -3,36 +3,36 @@ import { Skill } from '../../types/skill';
 interface SkillGroupProps {
     category: string;
     skills: Skill[];
-    hint: string;
     onSkillHover: (tag: string) => void;
     onSkillLeave: () => void;
 }
 
-const SkillGroup = ({ category, skills, hint, onSkillHover, onSkillLeave }: SkillGroupProps) => {
+const SkillGroup = ({ category, skills, onSkillHover, onSkillLeave }: SkillGroupProps) => {
     return (
-        <div className="group">
-            <h3 className="mb-8 text-sm text-[rgb(var(--text-secondary-rgb))]">{category}</h3>
-            <div className="flex flex-col gap-4 font-mono text-sm">
+        <div>
+            <h3 className="font-mono text-xs text-text-muted mb-6 uppercase border-b border-border-color pb-2 w-max">
+                {category}
+            </h3>
+            <ul className="flex flex-col gap-3">
                 {skills.map((skill, index) => (
-                    <span
+                    <li
                         key={index}
-                        className="flex items-center gap-2 cursor-pointer transition-colors text-[rgb(var(--text-primary-rgb))] w-fit hover:text-[rgb(var(--accent-rgb))]"
+                        className="flex items-center gap-3 text-sm text-text-primary group cursor-default"
                         onMouseEnter={() => onSkillHover(skill.filterTag)}
                         onMouseLeave={onSkillLeave}
                     >
                         {skill.icon && (
                             <skill.icon
-                                className="text-sm opacity-60"
-                                aria-hidden="true"
+                                size={14}
+                                className="text-text-muted opacity-40 group-hover:opacity-100 group-hover:text-accent transition-all grayscale group-hover:grayscale-0"
                             />
                         )}
-                        <span>{skill.name}</span>
-                    </span>
+                        <span className="group-hover:text-accent transition-colors">
+                            {skill.name}
+                        </span>
+                    </li>
                 ))}
-            </div>
-            <div className="mt-4 text-xs text-[rgb(var(--text-secondary-rgb))] font-mono opacity-0 group-hover:opacity-60 transition-opacity">
-                {hint}
-            </div>
+            </ul>
         </div>
     );
 };

@@ -1,26 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
+@import "@xyflow/react/dist/style.css"; /* Import library CSS here to layer correctly if supported, otherwise overrides below handle it */
+
+@theme {
+    /* STRICT RFC PALETTE mapping */
+    --color-bg-primary: #0b0d10;
+    --color-surface: #111316;
+    --color-border-color: #1f2229;
+    --color-text-primary: #f0f0f0;
+    --color-text-muted: #757a85;
+    --color-accent: #647a96;
+    --color-error: #ef4444;
+    --color-warning: #f59e0b;
+
+    /* Spacing */
+    --spacing-container-x: 6vw;
+}
 
 @layer base {
     body {
-        @apply bg-bg-primary text-text-primary antialiased;
-        font-feature-settings: "cv11", "ss01";
+        background-color: var(--color-bg-primary);
+        color: var(--color-text-primary);
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
     }
 
-    /* Custom Scrollbar for that "Editor" feel */
-    ::-webkit-scrollbar {
-        width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-        background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-        @apply bg-border-focus rounded-full;
+    .font-mono {
+        font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+        letter-spacing: -0.02em;
     }
 }
 
-@layer utilities {
-    .text-balance {
-        text-wrap: balance;
+@layer components {
+    /* FORCE OVERRIDES FOR REACT FLOW 
+       Targeting specific node types (.react-flow__node-default, etc) 
+       increases specificity to beat the library's default white styles.
+    */
+    .react-flow__node-default,
+    .react-flow__node-input,
+    .react-flow__node-output,
+    .react-flow__node-group {
+        @apply font-mono uppercase rounded-xs w-37.5 flex justify-center items-center text-center text-[11px] shadow-none;
+        
+        /* Force Dark Blueprint Theme */
+        background-color: var(--color-surface) !important;
+        border: 1px solid var(--color-border-color) !important;
+        color: var(--color-text-muted) !important;
+    }
+
+    /* Selected state */
+    .react-flow__node.selected,
+    .react-flow__node:focus {
+        border-color: var(--color-accent) !important;
+        box-shadow: none !important;
+    }
+
+    /* Edges - Make them visible */
+    .react-flow__edge-path, 
+    .react-flow__connection-path {
+        stroke: var(--color-accent) !important;
+        stroke-width: 1.5px !important;
+        opacity: 0.6;
+    }
+
+    /* Handles - Hide or style subtly */
+    .react-flow__handle {
+        background-color: var(--color-accent) !important;
+        width: 3px !important;
+        height: 3px !important;
+        border: none !important;
+    }
+    
+    /* Background dots */
+    .react-flow__background pattern circle {
+        fill: var(--color-border-color) !important;
+        opacity: 0.5;
     }
 }

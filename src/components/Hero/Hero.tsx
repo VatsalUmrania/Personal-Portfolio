@@ -1,65 +1,49 @@
 import { motion } from 'framer-motion';
 import { siteConfig } from '../../data/site';
 
-const Hero = ({ onScrollToProjects }: { onScrollToProjects: () => void }) => {
+const Hero = () => {
     return (
-        <section className="min-h-screen flex flex-col justify-center px-6 lg:px-12 max-w-350 mx-auto pt-20">
-            {/* Header: Name & Role - purely functional */}
+        <section className="min-h-[60vh] flex flex-col justify-center items-start px-container-x max-w-350 mx-auto pt-32 pb-16">
             <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex justify-between items-end border-b border-border-subtle pb-6 mb-16"
+                className="w-full border-l-2 border-accent pl-6"
             >
-                <h1 className="text-sm font-mono text-text-secondary tracking-widest uppercase">
-                    {siteConfig.name}
+                <div className="font-mono text-xs text-accent mb-4 tracking-wider">
+                    [ RFC-2025 // VATSAL UMRANIA ]
+                </div>
+                
+                <h1 className="text-4xl md:text-6xl font-medium leading-tight mb-8 text-text-primary max-w-4xl">
+                    Building scalable full-stack applications & distributed systems.
                 </h1>
-                <span className="text-sm font-mono text-text-tertiary">
-                    Based in Mumbai • IST
-                </span>
-            </motion.div>
 
-            {/* Main Statement */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                <motion.div 
-                    className="lg:col-span-8"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1, duration: 0.6 }}
-                >
-                    <h2 className="text-5xl lg:text-7xl font-medium tracking-tight leading-[1.1] text-text-primary mb-8 text-balance">
-                        Building scalable <span className="text-text-secondary">distributed systems</span> & <span className="text-text-secondary">type-safe</span> architectures.
-                    </h2>
-                </motion.div>
+                <p className="text-lg text-text-muted max-w-2xl leading-relaxed mb-8">
+                    Focused on type-safe architectures, AI integrations, and decentralized verification platforms. 
+                    Prioritizing boring code, predictable state, and observability.
+                </p>
 
-                {/* Description & CTA */}
-                <motion.div 
-                    className="lg:col-span-4 flex flex-col justify-end"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                >
-                    <p className="text-lg text-text-secondary leading-relaxed mb-12">
-                        I engineer heavy-lifting web applications. My work prioritizes system resilience, predictability, and "boring" code that survives production at scale.
-                    </p>
-                    
-                    <div className="flex gap-8 font-mono text-sm">
-                        <button 
-                            onClick={onScrollToProjects}
-                            className="text-text-primary border-b border-transparent hover:border-text-primary transition-colors pb-0.5"
-                        >
-                            ↓ Selected Work
-                        </button>
-                        <a 
-                            href={siteConfig.contact.github} 
-                            target="_blank"
-                            className="text-text-tertiary hover:text-text-primary transition-colors"
-                        >
-                            GitHub ↗
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 font-mono text-xs text-text-muted border-t border-border-color pt-8 w-full max-w-3xl">
+                    <div>
+                        <span className="block text-accent mb-1">LOCATION</span>
+                        Mumbai, IN
+                    </div>
+                    <div>
+                        <span className="block text-accent mb-1">STATUS</span>
+                        Open to Work
+                    </div>
+                    <div>
+                        <span className="block text-accent mb-1">CORE STACK</span>
+                        Next.js / Solidity
+                    </div>
+                    <div>
+                        <span className="block text-accent mb-1">CONTACT</span>
+                        <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-text-primary transition-colors underline decoration-dotted underline-offset-4">
+                            Email ↗
                         </a>
                     </div>
-                </motion.div>
-            </div>
+                </div>
+            </motion.div>
         </section>
     );
 };

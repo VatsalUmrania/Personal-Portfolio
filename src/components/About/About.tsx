@@ -2,16 +2,25 @@ import { siteConfig } from '../../data/site';
 
 const About = () => {
     return (
-        <section className="px-container-x max-w-[1600px] mx-auto py-[140px]">
-            <h2 className="mb-8 text-[rgb(var(--text-secondary-rgb))]">ABOUT</h2>
-            <div className="text-xl text-[rgb(var(--text-primary-rgb))] max-w-[800px]">
-                {siteConfig.about.map((paragraph, index) => (
-                    <p key={index} className="mb-4">
-                        {paragraph}
-                    </p>
-                ))}
+        <div className="border-r border-border-color p-12 md:p-24 flex flex-col justify-between h-full">
+            <div>
+                <span className="font-mono text-xs text-accent tracking-widest uppercase block mb-8">
+                    // BIO_O1
+                </span>
+                <div className="text-lg md:text-xl text-text-primary leading-relaxed max-w-xl space-y-6">
+                    {siteConfig.about.map((paragraph, index) => (
+                        <p key={index}>
+                            {paragraph}
+                        </p>
+                    ))}
+                </div>
             </div>
-        </section>
+            
+            <div className="mt-12 pt-12 border-t border-dashed border-border-color font-mono text-xs text-text-muted">
+                <span className="block mb-1">CURRENTLY</span>
+                Building high-availability systems @ Mumbai
+            </div>
+        </div>
     );
 };
 

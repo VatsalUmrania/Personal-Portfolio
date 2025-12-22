@@ -2,13 +2,12 @@ import { SiteConfig } from '../types/site';
 
 export const siteConfig: SiteConfig = {
     name: 'Vatsal Umrania',
-    role: 'Vatsal Umrania — Software Engineer',
-    headline: 'Building scalable full-stack\napplications & distributed systems.',
-    valueProposition:
-        'Focused on type-safe architectures, AI integrations, and decentralized solutions using Next.js, tRPC, and Solidity.',
+    role: 'Software Engineer', // Simple, confident
+    headline: 'Engineering scalable\ndistributed systems.',
+    valueProposition: 'I build resilient full-stack applications with a focus on type safety, performance, and predictable architecture.',
     about: [
-        'I am a Software Engineer and IT student passionate about building secure, type-safe, and scalable applications. My experience ranges from optimizing logistics workflows at Mass International to architecting decentralized verification platforms.',
-        'I focus on modern web stacks (Next.js, tRPC), cloud orchestration (AWS, Docker), and exploring emerging technologies like AI agents and Blockchain.',
+        'I am an engineer who values clarity over complexity. My background involves optimizing logistics workflows and architecting decentralized verification platforms, where precision is not optional.',
+        'I specialize in the React/Next.js ecosystem but am fundamentally tool-agnostic. I am currently exploring the intersection of AI agents and deterministic infrastructure.'
     ],
     contact: {
         email: 'vbumrania@gmail.com',

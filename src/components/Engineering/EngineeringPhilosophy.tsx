@@ -1,36 +1,49 @@
+import { motion } from 'framer-motion';
+
 const EngineeringPhilosophy = () => {
     return (
-        <section className="py-32 px-6 border-t border-border-subtle bg-bg-secondary/20">
-            <div className="max-w-4xl mx-auto text-center mb-24">
-                <h2 className="text-sm font-mono text-text-accent-glow mb-6">ENGINEERING VALUES</h2>
-                <h3 className="text-3xl md:text-5xl font-medium leading-tight text-text-primary">
-                    Complexity should be <span className="text-text-tertiary italic">opt-in</span>. <br/>
-                    Performance should be <span className="text-text-tertiary italic">default</span>.
-                </h3>
+        <section className="px-container-x max-w-350 mx-auto py-24 border-t border-border-color">
+            <div className="mb-12">
+                <span className="font-mono text-xs text-accent tracking-widest uppercase block mb-2">
+                    System Directives
+                </span>
+                <h2 className="text-2xl font-medium text-text-primary">
+                    Engineering Standards
+                </h2>
             </div>
 
-            <div className="max-w-350 mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 px-6">
-                <Value 
-                    title="Types > Tests" 
-                    desc="I strictly type my codebases. A robust type system catches 80% of bugs before runtime, reducing the need for excessive unit test boilerplate."
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-l border-border-color">
+                <Directive 
+                    index="01"
+                    title="Boring Architecture"
+                    desc="Complexity is technical debt. I prioritize standard patterns, type safety, and predictable state over 'magic' or experimental features. The best code is easy to delete."
                 />
-                <Value 
-                    title="Boring Architecture" 
-                    desc="I prefer standard patterns over clever ones. The goal is code that is easy to delete, easy to debug at 3AM, and easy for new engineers to onboard."
+                <Directive 
+                    index="02"
+                    title="Observability First"
+                    desc="If you can't measure it, you can't improve it. I build systems with logging, metrics, and tracing as first-class citizens, not afterthoughts."
                 />
-                <Value 
-                    title="Data Locality" 
-                    desc="State should live as close to where it's used as possible. I avoid global state (Redux) unless absolutely necessary, preferring server state management."
+                <Directive 
+                    index="03"
+                    title="Zero Trust Security"
+                    desc="Security is not a feature; it's the baseline. Input validation, immutable capability models, and defense-in-depth are non-negotiable."
                 />
             </div>
         </section>
     );
 };
 
-const Value = ({ title, desc }: { title: string, desc: string }) => (
-    <div className="border-l border-border-subtle pl-6">
-        <h4 className="text-lg font-medium text-text-primary mb-3">{title}</h4>
-        <p className="text-text-secondary leading-relaxed text-sm">{desc}</p>
+const Directive = ({ index, title, desc }: { index: string, title: string, desc: string }) => (
+    <div className="group pl-6 md:pl-8 border-r border-border-color py-2">
+        <div className="font-mono text-xs text-text-muted mb-4 group-hover:text-accent transition-colors">
+            // RULE_{index}
+        </div>
+        <h3 className="text-lg font-medium text-text-primary mb-3">
+            {title}
+        </h3>
+        <p className="text-sm text-text-muted leading-relaxed max-w-sm">
+            {desc}
+        </p>
     </div>
 );
 
