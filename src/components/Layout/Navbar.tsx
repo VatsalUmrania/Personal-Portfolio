@@ -82,11 +82,11 @@ export const Navbar = () => {
                     {/* Primary Action: CV Only */}
                     <div>
                         <a 
-                            href="/assets/Vatsal Umrania.pdf" 
+                            href="https://drive.google.com/file/d/1sm2KMNAlTlTkwFDYhkwf_q0i0KvSeYHp/view?usp=sharing" 
                             target="_blank"
                             className="flex items-center gap-2 bg-text-primary hover:bg-white text-bg-primary px-3 py-1.5 rounded-full text-[11px] font-mono font-semibold transition-all"
                         >
-                            <span>CV_2025</span>
+                            <span>CV</span>
                             <FiDownload size={10} />
                         </a>
                     </div>
