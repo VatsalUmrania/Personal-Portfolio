@@ -1,522 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
+@import "@xyflow/react/dist/style.css"; /* Import library CSS here to layer correctly if supported, otherwise overrides below handle it */
 
-:root {
-  /* Primary Color Scale */
-  --primary-50: #f8fafc;
-  --primary-100: #f1f5f9;
-  --primary-200: #e2e8f0;
-  --primary-300: #cbd5e1;
-  --primary-400: #94a3b8;
-  --primary-500: #64748b;
-  --primary-600: #475569;
-  --primary-700: #334155;
-  --primary-800: #1e293b;
-  --primary-900: #0f172a;
-  --primary-950: #020617;
-  
-  /* Accent Colors */
-  --accent-blue: #3b82f6;
-  --accent-indigo: #6366f1;
-  --accent-purple: #8b5cf6;
-  --accent-violet: #7c3aed;
-  --accent-pink: #ec4899;
-  --accent-green: #10b981;
-  --accent-emerald: #059669;
-  --accent-orange: #f59e0b;
-  --accent-red: #ef4444;
-  --accent-amber: #f59e0b;
-  --accent-teal: #14b8a6;
-  
-  /* Shadow System */
-  --shadow-glow: 0 0 20px;
-  --shadow-intense: 0 25px 50px -12px;
-  --shadow-card: 0 10px 30px -10px;
-  --shadow-float: 0 20px 40px -15px;
-  
-  /* Blur System */
-  --blur-subtle: 8px;
-  --blur-medium: 16px;
-  --blur-intense: 24px;
-  --blur-extreme: 40px;
-  
-  /* Transition System */
-  --transition-fast: 0.15s ease-out;
-  --transition-normal: 0.3s ease-out;
-  --transition-slow: 0.6s ease-out;
-  --transition-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  --transition-bounce: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+@theme {
+    /* STRICT RFC PALETTE mapping */
+    --color-bg-primary: #0b0d10;
+    --color-surface: #111316;
+    --color-border-color: #1f2229;
+    --color-text-primary: #f0f0f0;
+    --color-text-muted: #757a85;
+    --color-accent: #647a96;
+    --color-error: #ef4444;
+    --color-warning: #f59e0b;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --primary-text: var(--primary-100);
-    --secondary-text: var(--primary-300);
-    --muted-text: var(--primary-400);
-  }
+    /* Spacing */
+    --spacing-container-x: 6vw;
 }
 
 @layer base {
-  * {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-    box-sizing: border-box;
-  }
-  
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    font-variant-ligatures: common-ligatures;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-  }
-  
-  body {
-    margin: 0;
-    background: linear-gradient(135deg, 
-      var(--primary-900) 0%, 
-      var(--primary-800) 25%, 
-      var(--primary-900) 75%, 
-      var(--primary-950) 100%);
-    background-attachment: fixed;
-    color: var(--primary-200);
-    line-height: 1.6;
-    overflow-x: hidden;
-    min-height: 100vh;
-    font-size: 1rem;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+    body {
+        background-color: var(--color-bg-primary);
+        color: var(--color-text-primary);
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+    }
 
-  /* Enhanced Scrollbar System */
-  ::-webkit-scrollbar { 
-    width: 8px; 
-    height: 8px; 
-  }
-  
-  ::-webkit-scrollbar-track { 
-    background: var(--primary-800); 
-    border-radius: 4px; 
-  }
-  
-  ::-webkit-scrollbar-thumb { 
-    background: linear-gradient(180deg, var(--accent-blue), var(--accent-purple));
-    border-radius: 4px;
-    border: 2px solid var(--primary-800);
-    transition: all var(--transition-normal);
-  }
-  
-  ::-webkit-scrollbar-thumb:hover { 
-    background: linear-gradient(180deg, var(--accent-purple), var(--accent-pink));
-    transform: scale(1.1);
-  }
-  
-  ::-webkit-scrollbar-corner {
-    background: var(--primary-800);
-  }
-
-  /* Selection & Focus States */
-  ::selection { 
-    background: var(--accent-blue); 
-    color: white; 
-    text-shadow: none;
-  }
-  
-  ::-moz-selection { 
-    background: var(--accent-blue); 
-    color: white; 
-    text-shadow: none;
-  }
-  
-  :focus-visible { 
-    outline: 2px solid var(--accent-blue); 
-    outline-offset: 2px; 
-    border-radius: 4px; 
-  }
-  
-  :focus:not(:focus-visible) {
-    outline: none;
-  }
-
-  /* Typography Enhancements */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.025em;
-    margin: 0;
-  }
-  
-  p {
-    line-height: 1.7;
-    color: var(--primary-300);
-    margin: 0 0 1rem 0;
-  }
-  
-  a {
-    color: var(--accent-blue);
-    text-decoration: none;
-    transition: color var(--transition-normal);
-  }
-  
-  a:hover {
-    color: var(--accent-purple);
-  }
-
-  /* Form Elements */
-  input, textarea, select, button {
-    font: inherit;
-  }
-
-  button {
-    cursor: pointer;
-  }
-
-  /* Image Elements */
-  img, picture, video, canvas, svg {
-    display: block;
-    max-width: 100%;
-  }
-
-  /* Code Elements */
-  code, kbd, pre, samp {
-    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
-  }
+    .font-mono {
+        font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+        letter-spacing: -0.02em;
+    }
 }
 
 @layer components {
-  /* Card Stack Components */
-  .enhanced-card {
-    will-change: transform, opacity;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    isolation: isolate;
-    border-radius: var(--radius-2xl, 32px);
-    backdrop-filter: blur(var(--blur-medium));
-    transition: all var(--transition-normal);
-    contain: layout style paint;
-  }
-
-  .enhanced-card:hover {
-    transform: translateY(-4px) translateZ(0);
-    box-shadow: var(--shadow-float) rgba(0, 0, 0, 0.3);
-  }
-
-  .enhanced-card:focus-visible {
-    outline: 2px solid var(--accent-indigo);
-    outline-offset: 4px;
-  }
-
-  .card-stack-container {
-    perspective: 2000px;
-    transform-style: preserve-3d;
-    position: relative;
-  }
-
-  .card-stack-item {
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-    will-change: transform, opacity;
-    position: absolute;
-    inset: 0;
-  }
-
-  /* Custom Scrollbar for Projects */
-  .scrollbar-custom {
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-violet) var(--primary-800);
-  }
-
-  .scrollbar-custom::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  .scrollbar-custom::-webkit-scrollbar-track {
-    background: var(--primary-800);
-    border-radius: 4px;
-    margin: 4px;
-  }
-
-  .scrollbar-custom::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--accent-violet), #a855f7);
-    border-radius: 4px;
-    border: 2px solid var(--primary-800);
-    transition: all var(--transition-normal);
-  }
-
-  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #a855f7, #c084fc);
-    transform: scale(1.1);
-  }
-
-  /* Glass Effect Utilities */
-  .glass-effect {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(var(--blur-medium));
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .glass-strong {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(var(--blur-intense));
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-
-  .glass-subtle {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(var(--blur-subtle));
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-}
-
-@layer utilities {
-  /* Text Utilities */
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  /* Performance Optimizations */
-  .gpu-accelerated {
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
-  }
-
-  .optimize-animations {
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
-
-  /* Animation Utilities */
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-
-  .animate-pulse-slow {
-    animation: pulse-slow 3s ease-in-out infinite;
-  }
-
-  @keyframes pulse-slow {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-  }
-
-  /* Gradient Animation */
-  .gradient-shift {
-    background-size: 200% 200%;
-    animation: gradient-move 3s ease infinite;
-  }
-
-  @keyframes gradient-move {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  /* Hover Effects */
-  .hover-lift {
-    transition: all var(--transition-normal);
-  }
-
-  .hover-lift:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--shadow-intense) rgba(0, 0, 0, 0.2);
-  }
-
-  .hover-scale {
-    transition: transform var(--transition-normal);
-  }
-
-  .hover-scale:hover {
-    transform: scale(1.05);
-  }
-
-  .hover-rotate {
-    transition: transform var(--transition-normal);
-  }
-
-  .hover-rotate:hover {
-    transform: rotate(5deg);
-  }
-
-  /* Focus Ring Utilities */
-  .focus-ring:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-    border-radius: 4px;
-  }
-
-  .focus-ring-inset:focus {
-    outline: none;
-    box-shadow: inset 0 0 0 2px rgba(59, 130, 246, 0.5);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .enhanced-card {
-    border-radius: 20px;
-  }
-  
-  .card-stack-item button {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  .touch-target {
-    min-width: 44px;
-    min-height: 44px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .enhanced-card:hover {
-    transform: translateY(-6px) scale(1.02);
-  }
-}
-
-@media (min-width: 1536px) {
-  .enhanced-card {
-    border-radius: 32px;
-  }
-}
-
-/* Accessibility Improvements */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  
-  .animate-float,
-  .animate-pulse-slow,
-  .gradient-shift {
-    animation: none !important;
-  }
-}
-
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-  :root {
-    --primary-200: #ffffff;
-    --primary-300: #e5e5e5;
-    --accent-blue: #0066cc;
-    --accent-purple: #6600cc;
-  }
-  
-  .enhanced-card {
-    border-width: 2px;
-    border-color: rgba(255, 255, 255, 0.5);
-  }
-}
-
-/* Print Styles */
-@media print {
-  body {
-    background: white !important;
-    color: black !important;
-  }
-  
-  .enhanced-card, 
-  .enhanced-btn-primary, 
-  .enhanced-btn-secondary,
-  .nav-pill-enhanced {
-    background: white !important;
-    color: black !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    border: 1px solid black !important;
-  }
-  
-  .nav-control-btn {
-    display: none !important;
-  }
-  
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* Battery Optimization */
-@media (prefers-reduced-data: reduce) {
-  .gradient-shift,
-  .animate-float,
-  .animate-pulse-slow {
-    animation: none !important;
-  }
-  
-  .enhanced-card::before,
-  .enhanced-btn-primary::before {
-    display: none !important;
-  }
-}
-
-/* Container Queries (Future-Proof) */
-@supports (container-type: inline-size) {
-  .card-stack-container {
-    container-type: inline-size;
-  }
-  
-  @container (min-width: 768px) {
-    .enhanced-card {
-      padding: 2rem;
+    /* FORCE OVERRIDES FOR REACT FLOW 
+       Targeting specific node types (.react-flow__node-default, etc) 
+       increases specificity to beat the library's default white styles.
+    */
+    .react-flow__node-default,
+    .react-flow__node-input,
+    .react-flow__node-output,
+    .react-flow__node-group {
+        @apply font-mono uppercase rounded-xs w-37.5 flex justify-center items-center text-center text-[11px] shadow-none;
+        
+        /* Force Dark Blueprint Theme */
+        background-color: var(--color-surface) !important;
+        border: 1px solid var(--color-border-color) !important;
+        color: var(--color-text-muted) !important;
     }
-  }
-  
-  @container (max-width: 480px) {
-    .enhanced-card {
-      padding: 1rem;
+
+    /* Selected state */
+    .react-flow__node.selected,
+    .react-flow__node:focus {
+        border-color: var(--color-accent) !important;
+        box-shadow: none !important;
     }
-  }
-}
 
-/* Modern CSS Features */
-@supports (backdrop-filter: blur(10px)) {
-  .glass-effect,
-  .glass-strong,
-  .glass-subtle {
-    backdrop-filter: blur(var(--blur-medium));
-  }
-}
+    /* Edges - Make them visible */
+    .react-flow__edge-path, 
+    .react-flow__connection-path {
+        stroke: var(--color-accent) !important;
+        stroke-width: 1.5px !important;
+        opacity: 0.6;
+    }
 
-@supports not (backdrop-filter: blur(10px)) {
-  .glass-effect,
-  .glass-strong,
-  .glass-subtle {
-    background: rgba(255, 255, 255, 0.2) !important;
-  }
-}
-
-/* Smooth Scrolling for Better UX */
-@supports (scroll-behavior: smooth) {
-  html {
-    scroll-behavior: smooth;
-  }
+    /* Handles - Hide or style subtly */
+    .react-flow__handle {
+        background-color: var(--color-accent) !important;
+        width: 3px !important;
+        height: 3px !important;
+        border: none !important;
+    }
+    
+    /* Background dots */
+    .react-flow__background pattern circle {
+        fill: var(--color-border-color) !important;
+        opacity: 0.5;
+    }
 }
