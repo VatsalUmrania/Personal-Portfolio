@@ -1,84 +1,92 @@
 import { useState } from 'react';
 import { Project } from '../../types/project';
-import ProjectFlow from './ProjectFlow';
+import ProjectFlow from './ProjectFlow'; // Your existing component
 import clsx from 'clsx';
+import { FiArrowUpRight, FiLayers } from 'react-icons/fi';
 
 interface ProjectCardProps {
     project: Project;
-    isActive: boolean;
-    isDimmed: boolean;
-    isHighlighted: boolean;
     onOpenCaseStudy: (project: Project) => void;
 }
 
-const ProjectCard = ({ project, isActive, isDimmed, isHighlighted, onOpenCaseStudy }: ProjectCardProps) => {
-    const [archOpen, setArchOpen] = useState(false);
-
-    const toggleArch = () => {
-        setArchOpen(!archOpen);
-    };
+const ProjectCard = ({ project, onOpenCaseStudy }: ProjectCardProps) => {
+    const [isArchOpen, setArchOpen] = useState(false);
 
     return (
-        <article
-            className={clsx(
-                'min-w-[clamp(350px,45vw,600px)] bg-[rgb(var(--card-rgb))] border border-[rgb(var(--border-color-rgb))] p-12',
-                'flex flex-col justify-between h-[65vh]',
-                'transition-all duration-500 ease-in-out',
-                {
-                    'opacity-100': isActive,
-                    'opacity-40': !isActive && !isDimmed && !isHighlighted,
-                    'opacity-20': isDimmed,
-                    'border-[rgb(var(--accent-rgb))]! -translate-y-0.5': isHighlighted,
-                }
-            )}
-            data-tech={project.tags.join(' ')}
-        >
-            <div>
-                <div className="mb-8">
-                    <h3 className="text-2xl mb-4 text-[rgb(var(--text-primary-rgb))]">{project.title}</h3>
-                    <p className="text-base leading-relaxed mb-8 text-[rgb(var(--text-secondary-rgb))]">{project.problem}</p>
+        <article className="min-w-[85vw] md:min-w-150 h-[70vh] flex flex-col justify-between border-r border-border-subtle bg-bg-primary pr-12 md:pr-24 pl-6 snap-center">
+            
+            {/* Top: Header */}
+            <div className="flex justify-between items-start">
+                <div>
+                    <span className="font-mono text-xs text-text-tertiary mb-3 block">
+                        0{project.id} — {project.caseStudy.category}
+                    </span>
+                    <h3 className="text-3xl font-medium text-text-primary mb-2">
+                        {project.title}
+                    </h3>
+                    <p className="text-text-secondary text-lg max-w-md leading-relaxed">
+                        {project.subtitle}
+                    </p>
                 </div>
-                <div className="flex flex-wrap gap-4 mb-auto">
-                    {project.techStack.map((tech, index) => (
-                        <span
-                            key={index}
-                            className="flex items-center gap-1.5 font-mono text-xs text-[rgb(var(--text-secondary-rgb))]"
-                        >
-                            {tech.icon && (
-                                <tech.icon
-                                    className="text-xs opacity-50"
-                                    aria-hidden="true"
-                                />
-                            )}
-                            <span>{tech.name}</span>
+                
+                {/* Tech Stack Pills - Minimal */}
+                <div className="hidden md:flex flex-wrap gap-2 max-w-50 justify-end">
+                    {project.techStack.map((tech) => (
+                        <span key={tech.name} className="px-2 py-1 text-[10px] font-mono text-text-tertiary border border-border-subtle rounded-sm uppercase tracking-wider">
+                            {tech.name}
                         </span>
                     ))}
                 </div>
-                <button
-                    className="mt-8 text-[rgb(var(--accent-rgb))] text-left opacity-80 hover:opacity-100 transition-opacity font-mono text-sm"
-                    onClick={toggleArch}
-                >
-                    {archOpen ? '[-] Hide Architecture' : '[+] Architecture View'}
-                </button>
-                <div
-                    className={clsx(
-                        'overflow-hidden transition-all duration-300 ease-out',
-                        {
-                            'max-h-0 opacity-0': !archOpen,
-                            'max-h-[400px] opacity-100 mt-6': archOpen,
-                        }
+            </div>
+
+            {/* Middle: Architecture Visualization */}
+            <div className="flex-1 my-12 relative group">
+                <div className={clsx(
+                    "w-full h-full border border-border-subtle bg-bg-secondary/50 transition-all duration-500",
+                    isArchOpen ? "opacity-100" : "opacity-40 grayscale group-hover:opacity-60"
+                )}>
+                    {isArchOpen ? (
+                        <ProjectFlow project={project} />
+                    ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <button 
+                                onClick={() => setArchOpen(true)}
+                                className="flex items-center gap-2 px-4 py-2 bg-bg-surface border border-border-subtle text-text-secondary hover:text-text-primary hover:border-text-secondary transition-all text-sm font-mono"
+                            >
+                                <FiLayers />
+                                Reveal Architecture
+                            </button>
+                        </div>
                     )}
-                >
-                    {archOpen && <ProjectFlow project={project} />}
                 </div>
             </div>
-            <div className="mt-12 pt-6 border-t border-[rgb(var(--border-color-rgb))] flex justify-between items-center">
-                <button
-                    className="font-mono text-sm text-[rgb(var(--text-secondary-rgb))] transition-colors hover:text-[rgb(var(--text-primary-rgb))] hover:underline underline-offset-4"
-                    onClick={() => onOpenCaseStudy(project)}
-                >
-                    View Case Study
-                </button>
+
+            {/* Bottom: Actions */}
+            <div className="flex items-center justify-between border-t border-border-subtle pt-6">
+                <div className="flex gap-6">
+                    <button 
+                        onClick={() => onOpenCaseStudy(project)}
+                        className="text-text-primary hover:text-accent-glow transition-colors flex items-center gap-2 group/btn"
+                    >
+                        <span className="font-medium">Read Case Study</span>
+                        <FiArrowUpRight className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
+                    </button>
+                    {project.liveUrl && (
+                        <a href={project.liveUrl} target="_blank" className="text-text-tertiary hover:text-text-secondary transition-colors text-sm flex items-center gap-2">
+                            Live Demo
+                        </a>
+                    )}
+                </div>
+                
+                {/* Metrics Teaser */}
+                <div className="hidden md:flex gap-8">
+                    {project.caseStudy.metrics.slice(0, 2).map((m, i) => (
+                        <div key={i} className="text-right">
+                            <div className="text-lg font-mono text-text-primary">{m.value}</div>
+                            <div className="text-[10px] uppercase tracking-wider text-text-tertiary">{m.label}</div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </article>
     );

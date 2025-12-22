@@ -1,141 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
-@theme {
-    /* Colors */
-    --color-bg-primary: oklch(16% 0.01 240);
-    --color-card: oklch(18% 0.01 240);
-    --color-text-primary: oklch(94% 0 0);
-    --color-text-secondary: oklch(55% 0.01 240);
-    --color-accent: oklch(55% 0.05 240);
-    --color-border-color: oklch(20% 0.01 240);
-
-    /* Spacing */
-    --spacing-container-x: 6vw;
-
-    /* Font Sizes */
-    --font-size-hero: clamp(2rem, 4vw, 3.5rem);
-}
-
 @layer base {
-    :root {
-        /* RGB fallbacks for the colors */
-        --bg-primary-rgb: 11, 13, 16;
-        --card-rgb: 17, 19, 22;
-        --text-primary-rgb: 240, 240, 240;
-        --text-secondary-rgb: 117, 122, 133;
-        --accent-rgb: 100, 122, 150;
-        --border-color-rgb: 31, 34, 41;
-    }
-
-    * {
-        box-sizing: border-box;
-        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-    }
-
     body {
-        background-color: rgb(var(--bg-primary-rgb));
-        color: rgb(var(--text-primary-rgb));
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        overflow-x: hidden;
+        @apply bg-bg-primary text-text-primary antialiased;
+        font-feature-settings: "cv11", "ss01";
     }
 
-    /* Reduced Motion Preference */
-    @media (prefers-reduced-motion: reduce) {
-
-        *,
-        ::before,
-        ::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-            scroll-behavior: auto !important;
-        }
+    /* Custom Scrollbar for that "Editor" feel */
+    ::-webkit-scrollbar {
+        width: 6px;
     }
-
-    /* Typography */
-    h1,
-    h2,
-    h3,
-    h4 {
-        font-weight: 500;
-        letter-spacing: -0.02em;
-        line-height: 1.1;
+    ::-webkit-scrollbar-track {
+        background: transparent;
     }
-
-    h1 {
-        font-size: var(--font-size-hero);
-        color: rgb(var(--text-primary-rgb));
-    }
-
-    h2 {
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: rgb(var(--text-secondary-rgb));
-    }
-
-    h3 {
-        font-size: 1.1rem;
-        font-weight: 600;
-    }
-
-    p,
-    li {
-        color: rgb(var(--text-secondary-rgb));
-        font-size: 1rem;
-        max-width: 60ch;
-    }
-
-    a {
-        color: inherit;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    button {
-        background: none;
-        border: none;
-        color: inherit;
-        cursor: pointer;
-        font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
-        font-size: 0.85rem;
-        padding: 0;
+    ::-webkit-scrollbar-thumb {
+        @apply bg-border-focus rounded-full;
     }
 }
 
-@layer components {
-
-    /* React Flow Custom Styles */
-    .react-flow__node {
-        background: rgb(var(--card-rgb));
-        border: 1px solid rgb(var(--border-color-rgb));
-        color: rgb(var(--text-secondary-rgb));
-        font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
-        font-size: 0.75rem;
-        padding: 0.5rem 1rem;
-    }
-
-    .react-flow__edge path {
-        stroke: rgb(var(--accent-rgb));
-        stroke-width: 1.5;
-    }
-
-    .react-flow__node.selected {
-        border-color: rgb(var(--accent-rgb));
-    }
-
-    /* Architecture diagram in focus mode */
-    .arch-diagram {
-        background: #0f1114;
-        padding: 2rem;
-        border-left: 1px solid rgb(var(--accent-rgb));
-        font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
-        font-size: 0.8rem;
-        color: rgb(var(--text-primary-rgb));
-        overflow-x: auto;
-        white-space: pre;
-        line-height: 1.4;
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
     }
 }

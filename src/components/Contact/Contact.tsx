@@ -2,7 +2,7 @@ import { siteConfig } from '../../data/site';
 
 const Contact = () => {
     return (
-        <section className="px-container-x max-w-[1600px] mx-auto py-[140px] mb-16">
+        <section className="px-container-x max-w-400 mx-auto py-35 mb-16">
             <h2 className="mb-8 text-[rgb(var(--text-secondary-rgb))]">CONNECT</h2>
             <div className="flex gap-16 mt-12 font-mono text-sm">
                 <a

@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import { Project } from '../../types/project';
-import { FiX, FiGithub, FiExternalLink, FiAlertTriangle, FiCheckCircle } from 'react-icons/fi';
+import { FiArrowLeft, FiGithub, FiGlobe } from 'react-icons/fi';
 
 interface FocusModeProps {
     project: Project | null;
@@ -9,18 +9,8 @@ interface FocusModeProps {
 }
 
 const FocusMode = ({ project, onClose }: FocusModeProps) => {
-    // Prevent background scrolling
     useEffect(() => {
-        if (project) document.body.style.overflow = 'hidden';
-        else document.body.style.overflow = '';
-        return () => { document.body.style.overflow = ''; };
-    }, [project]);
-
-    // Close on Escape
-    useEffect(() => {
-        const handleEsc = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') onClose();
-        };
+        const handleEsc = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
         window.addEventListener('keydown', handleEsc);
         return () => window.removeEventListener('keydown', handleEsc);
     }, [onClose]);
@@ -30,129 +20,143 @@ const FocusMode = ({ project, onClose }: FocusModeProps) => {
     return (
         <AnimatePresence>
             <motion.div
-                className="fixed inset-0 z-50 flex flex-col bg-[rgb(var(--bg-primary-rgb))]"
-                initial={{ opacity: 0, y: '100%' }}
+                className="fixed inset-0 z-50 bg-bg-primary overflow-y-auto"
+                initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: '100%' }}
+                exit={{ opacity: 0, y: 50 }}
                 transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             >
-                {/* Header Navigation */}
-                <div className="flex items-center justify-between px-6 py-4 border-b border-[rgb(var(--border-color-rgb))] bg-[rgb(var(--bg-primary-rgb))] z-10">
-                    <div className="flex flex-col">
-                        <span className="text-xs font-mono text-[rgb(var(--accent-rgb))] uppercase tracking-wider">Engineering Case Study</span>
-                        <h2 className="text-lg font-medium text-[rgb(var(--text-primary-rgb))]">{project.title}</h2>
+                {/* Top Navigation Bar */}
+                <div className="sticky top-0 z-10 w-full bg-bg-primary/80 backdrop-blur-md border-b border-border-subtle">
+                    <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+                        <button 
+                            onClick={onClose}
+                            className="text-sm font-mono text-text-secondary hover:text-text-primary flex items-center gap-2 transition-colors"
+                        >
+                            <FiArrowLeft /> Back to Index <span className="text-text-tertiary opacity-50">[ESC]</span>
+                        </button>
+                        <div className="flex gap-4">
+                            <a href={project.githubUrl} target="_blank" className="text-text-secondary hover:text-text-primary transition-colors">
+                                <FiGithub size={18} />
+                            </a>
+                            {project.liveUrl && (
+                                <a href={project.liveUrl} target="_blank" className="text-text-secondary hover:text-text-primary transition-colors">
+                                    <FiGlobe size={18} />
+                                </a>
+                            )}
+                        </div>
                     </div>
-                    <button 
-                        onClick={onClose}
-                        className="p-2 hover:bg-[rgb(var(--card-rgb))] rounded-full transition-colors border border-transparent hover:border-[rgb(var(--border-color-rgb))]"
-                    >
-                        <FiX className="text-xl" />
-                    </button>
                 </div>
 
-                {/* Main Scrollable Content */}
-                <div className="flex-1 overflow-y-auto">
-                    <div className="max-w-250 mx-auto grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12 p-6 lg:p-12">
+                <div className="max-w-5xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-[1fr_280px] gap-16 md:gap-24">
+                    
+                    {/* LEFT: Main Narrative */}
+                    <main className="space-y-24">
                         
-                        {/* LEFT COLUMN: The Narrative */}
-                        <div className="space-y-12">
-                            
-                            {/* 1. Problem & Context */}
-                            <section>
-                                <h3 className="text-2xl font-light mb-4 text-[rgb(var(--text-primary-rgb))]">The Challenge</h3>
-                                <p className="text-lg leading-relaxed text-[rgb(var(--text-secondary-rgb))]">
-                                    {project.caseStudy.details.problemStatement}
-                                </p>
-                                
-                                <div className="mt-6 flex flex-wrap gap-3">
-                                    {project.caseStudy.details.constraints.map((c, i) => (
-                                        <span key={i} className="px-3 py-1.5 bg-[rgb(var(--card-rgb))] border border-[rgb(var(--border-color-rgb))] text-xs font-mono text-[rgb(var(--text-secondary-rgb))] rounded">
-                                            ⚠️ {c}
-                                        </span>
-                                    ))}
-                                </div>
-                            </section>
+                        {/* Title Section */}
+                        <header>
+                            <span className="font-mono text-sm text-text-accent-glow mb-4 block">Case Study: {project.id.toString().padStart(2, '0')}</span>
+                            <h1 className="text-4xl md:text-5xl font-medium text-text-primary mb-8 leading-tight">
+                                {project.title}
+                            </h1>
+                            <p className="text-xl text-text-secondary leading-relaxed text-balance border-l-2 border-border-subtle pl-6">
+                                {project.caseStudy.summary}
+                            </p>
+                        </header>
 
-                            {/* 2. Architecture & Decisions */}
-                            <section>
-                                <h4 className="text-sm font-mono text-[rgb(var(--accent-rgb))] uppercase mb-6">Technical Architecture</h4>
-                                <div className="space-y-6">
-                                    {project.caseStudy.details.technicalDecisions.map((dec, i) => (
-                                        <div key={i} className="pl-4 border-l-2 border-[rgb(var(--border-color-rgb))] hover:border-[rgb(var(--accent-rgb))] transition-colors">
-                                            <h5 className="text-[rgb(var(--text-primary-rgb))] font-medium mb-1">{dec.decision}</h5>
-                                            <p className="text-sm text-[rgb(var(--text-secondary-rgb))] leading-relaxed">{dec.rationale}</p>
+                        {/* The Problem */}
+                        <section>
+                            <h3 className="text-sm font-mono text-text-tertiary uppercase tracking-widest mb-6">01 — The Challenge</h3>
+                            <p className="text-lg text-text-secondary leading-relaxed mb-8">
+                                {project.caseStudy.details.problemStatement}
+                            </p>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {project.caseStudy.details.constraints.map((c, i) => (
+                                    <div key={i} className="p-4 border border-border-subtle bg-bg-secondary rounded-sm">
+                                        <span className="text-xs font-mono text-text-tertiary block mb-2">Constraint</span>
+                                        <p className="text-sm text-text-primary">{c}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Technical Decisions - The "Meat" */}
+                        <section>
+                            <h3 className="text-sm font-mono text-text-tertiary uppercase tracking-widest mb-8">02 — Architecture & Decisions</h3>
+                            <div className="space-y-12">
+                                {project.caseStudy.details.technicalDecisions.map((dec, i) => (
+                                    <div key={i} className="group">
+                                        <h4 className="text-xl text-text-primary mb-3 group-hover:text-text-accent-glow transition-colors">
+                                            {dec.decision}
+                                        </h4>
+                                        <p className="text-text-secondary leading-relaxed">
+                                            {dec.rationale}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Tradeoffs - The "Senior" Section */}
+                        <section>
+                            <h3 className="text-sm font-mono text-text-tertiary uppercase tracking-widest mb-8">03 — Reflection</h3>
+                            <div className="bg-bg-surface border border-border-subtle p-8 rounded-sm space-y-8">
+                                <div>
+                                    <h4 className="font-mono text-sm text-text-secondary mb-4 flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-yellow-500/50"></span>
+                                        Tradeoffs Accepted
+                                    </h4>
+                                    <ul className="list-disc list-inside space-y-2 text-text-secondary text-sm">
+                                        {project.caseStudy.details.tradeoffs.map((t, i) => (
+                                            <li key={i}>{t}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="border-t border-border-subtle pt-8">
+                                    <h4 className="font-mono text-sm text-text-secondary mb-4 flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-red-500/50"></span>
+                                        Mistakes & Lessons
+                                    </h4>
+                                    <ul className="list-disc list-inside space-y-2 text-text-secondary text-sm">
+                                        {project.caseStudy.details.mistakes.map((m, i) => (
+                                            <li key={i}>{m}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+
+                    {/* RIGHT: Sidebar Data */}
+                    <aside className="hidden md:block">
+                        <div className="sticky top-32 space-y-12">
+                            {/* Tech Stack List */}
+                            <div>
+                                <h5 className="font-mono text-xs text-text-tertiary uppercase tracking-widest mb-6">Tech Stack</h5>
+                                <div className="flex flex-col gap-3">
+                                    {project.techStack.map(tech => (
+                                        <div key={tech.name} className="flex items-center gap-3 text-sm text-text-secondary">
+                                            {tech.icon && <tech.icon />}
+                                            <span>{tech.name}</span>
                                         </div>
                                     ))}
                                 </div>
-                            </section>
+                            </div>
 
-                            {/* 3. Tradeoffs & Mistakes (The "Senior" Section) */}
-                            <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="p-6 bg-[rgba(255,100,100,0.03)] border border-[rgba(255,100,100,0.1)] rounded-sm">
-                                    <div className="flex items-center gap-2 mb-4 text-red-400">
-                                        <FiAlertTriangle />
-                                        <span className="text-xs font-mono uppercase tracking-wide">Hard Lessons</span>
-                                    </div>
-                                    <ul className="space-y-3">
-                                        {project.caseStudy.details.mistakes.map((m, i) => (
-                                            <li key={i} className="text-sm text-[rgb(var(--text-secondary-rgb))] list-disc list-inside">
-                                                {m}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                
-                                <div className="p-6 bg-[rgba(100,255,150,0.03)] border border-[rgba(100,255,150,0.1)] rounded-sm">
-                                    <div className="flex items-center gap-2 mb-4 text-emerald-400">
-                                        <FiCheckCircle />
-                                        <span className="text-xs font-mono uppercase tracking-wide">Tradeoffs Accepted</span>
-                                    </div>
-                                    <ul className="space-y-3">
-                                        {project.caseStudy.details.tradeoffs.map((t, i) => (
-                                            <li key={i} className="text-sm text-[rgb(var(--text-secondary-rgb))] list-disc list-inside">
-                                                {t}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </section>
-                        </div>
-
-                        {/* RIGHT COLUMN: Sticky Metrics & Links */}
-                        <div className="hidden lg:block">
-                            <div className="sticky top-0 space-y-8">
-                                {/* Links */}
-                                <div className="flex gap-4">
-                                    <a href={project.githubUrl} target="_blank" className="flex-1 flex items-center justify-center gap-2 py-3 bg-[rgb(var(--text-primary-rgb))] text-[rgb(var(--bg-primary-rgb))] font-mono text-sm font-bold hover:opacity-90 transition-opacity">
-                                        <FiGithub /> Source
-                                    </a>
-                                    {project.liveUrl && (
-                                        <a href={project.liveUrl} target="_blank" className="flex-1 flex items-center justify-center gap-2 py-3 border border-[rgb(var(--border-color-rgb))] text-[rgb(var(--text-primary-rgb))] font-mono text-sm hover:bg-[rgb(var(--card-rgb))] transition-colors">
-                                            <FiExternalLink /> Live
-                                        </a>
-                                    )}
-                                </div>
-
-                                {/* Metrics */}
-                                <div className="bg-[rgb(var(--card-rgb))] p-6 border border-[rgb(var(--border-color-rgb))]">
-                                    <h5 className="text-xs font-mono text-[rgb(var(--text-secondary-rgb))] uppercase mb-4">Key Metrics</h5>
-                                    <div className="space-y-6">
-                                        {project.caseStudy.metrics.map((m, i) => (
-                                            <div key={i}>
-                                                <div className="text-3xl font-light text-[rgb(var(--text-primary-rgb))]">{m.value}</div>
-                                                <div className="text-xs text-[rgb(var(--text-secondary-rgb))] font-mono mt-1">{m.label}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* ASCII Arch Diagram Fallback (if no image) */}
-                                <div className="p-4 bg-black border border-[rgb(var(--border-color-rgb))] font-mono text-[10px] leading-tight text-[rgb(var(--text-secondary-rgb))] overflow-hidden whitespace-pre opacity-60">
-                                    {project.caseStudy.architectureDiagram}
+                            {/* Metrics - Big Numbers */}
+                            <div>
+                                <h5 className="font-mono text-xs text-text-tertiary uppercase tracking-widest mb-6">Impact</h5>
+                                <div className="space-y-6">
+                                    {project.caseStudy.metrics.map((m, i) => (
+                                        <div key={i} className="pb-6 border-b border-border-subtle last:border-0">
+                                            <div className="text-3xl font-light text-text-primary mb-1">{m.value}</div>
+                                            <div className="text-xs font-mono text-text-tertiary">{m.label}</div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </aside>
                 </div>
             </motion.div>
         </AnimatePresence>

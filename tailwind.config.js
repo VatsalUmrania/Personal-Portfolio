@@ -7,33 +7,33 @@ export default {
     theme: {
         extend: {
             colors: {
-                'bg-primary': '#0b0d10',
-                'card': '#111316',
-                'text-primary': '#f0f0f0',
-                'text-secondary': '#757a85',
-                'accent': '#647a96',
-                'border-color': '#1f2229',
+                // Linear-style dark theme palette
+                bg: {
+                    primary: '#0B0E14', // Rich dark, not pitch black
+                    secondary: '#151921',
+                    surface: '#1D222C',
+                },
+                text: {
+                    primary: '#F7F8F8',
+                    secondary: '#8A8F98',
+                    tertiary: '#575C66',
+                },
+                border: {
+                    subtle: 'rgba(255, 255, 255, 0.08)',
+                    focus: 'rgba(255, 255, 255, 0.16)',
+                },
+                accent: {
+                    glow: '#5E6AD2', // Subtle purple/blue glow
+                    DEFAULT: '#D2D5DA',
+                }
             },
             fontFamily: {
-                sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
-                mono: ['SF Mono', 'Menlo', 'Consolas', 'monospace'],
+                sans: ['Inter', 'sans-serif'],
+                mono: ['JetBrains Mono', 'SF Mono', 'Menlo', 'monospace'], // Suggestion: Use JetBrains if possible
             },
-            spacing: {
-                'container-x': '6vw',
-            },
-            transitionTimingFunction: {
-                'smooth': 'cubic-bezier(0.2, 0.0, 0.2, 1)',
-                'out-quad': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-            },
-            fontSize: {
-                'hero': 'clamp(2rem, 4vw, 3.5rem)',
-            },
-            minWidth: {
-                'project-card': 'clamp(350px, 45vw, 600px)',
-            },
-            maxWidth: {
-                'container': '1600px',
-            },
+            backgroundImage: {
+                'subtle-gradient': 'linear-gradient(to bottom right, rgba(255,255,255,0.03), transparent)',
+            }
         },
     },
     plugins: [],
