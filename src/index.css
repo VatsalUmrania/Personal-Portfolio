@@ -1,13 +1,12 @@
 @import "tailwindcss";
-@import "@xyflow/react/dist/style.css"; /* Import library CSS here to layer correctly if supported, otherwise overrides below handle it */
 
 @theme {
-    /* STRICT RFC PALETTE mapping */
+    /* CLEAN PALETTE */
     --color-bg-primary: #0b0d10;
-    --color-surface: #111316;
-    --color-border-color: #1f2229;
+    --color-surface: #14171c;
+    --color-border-color: #242830;
     --color-text-primary: #f0f0f0;
-    --color-text-muted: #757a85;
+    --color-text-muted: #8b929e;
     --color-accent: #647a96;
     --color-error: #ef4444;
     --color-warning: #f59e0b;
@@ -25,86 +24,25 @@
         overflow-x: hidden;
     }
 
+    /* Monospace for code/data only */
     .font-mono {
         font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
-        letter-spacing: -0.02em;
     }
 }
 
 @layer components {
-    /* FORCE OVERRIDES FOR REACT FLOW 
-       Targeting specific node types (.react-flow__node-default, etc) 
-       increases specificity to beat the library's default white styles.
-    */
-    .react-flow__node-default,
-    .react-flow__node-input,
-    .react-flow__node-output,
-    .react-flow__node-group {
-        @apply font-mono uppercase rounded-xs w-37.5 flex justify-center items-center text-center text-[11px] shadow-none;
-        
-        /* Force Dark Blueprint Theme */
-        background-color: var(--color-surface) !important;
-        border: 1px solid var(--color-border-color) !important;
-        color: var(--color-text-muted) !important;
+    /* Custom Scrollbar */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
     }
-
-    /* Selected state */
-    .react-flow__node.selected,
-    .react-flow__node:focus {
-        border-color: var(--color-accent) !important;
-        box-shadow: none !important;
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
     }
-
-    /* Edges - Make them visible */
-    .react-flow__edge-path, 
-    .react-flow__connection-path {
-        stroke: var(--color-accent) !important;
-        stroke-width: 1.5px !important;
-        opacity: 0.6;
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: var(--color-border-color);
+        border-radius: 4px;
     }
-
-    /* Handles - Hide or style subtly */
-    .react-flow__handle {
-        background-color: var(--color-accent) !important;
-        width: 3px !important;
-        height: 3px !important;
-        border: none !important;
-    }
-    
-    /* Background dots */
-    .react-flow__background pattern circle {
-        fill: var(--color-border-color) !important;
-        opacity: 0.5;
-    }
-}
-@layer utilities {
-    .bg-grid-pattern {
-        background-size: 40px 40px;
-        background-image: linear-gradient(to right, var(--color-border-color) 1px, transparent 1px),
-                          linear-gradient(to bottom, var(--color-border-color) 1px, transparent 1px);
-    }
-    .bg-noise {
-        position: relative;
-    }
-    .bg-noise::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-        pointer-events: none;
-        z-index: 9998; /* Below cursor, above content */
-        opacity: 0.4;
-    }
-
-    /* Scanline Animation for Photo */
-    @keyframes scanline {
-        0% { transform: translateY(-100%); }
-        100% { transform: translateY(100%); }
-    }
-    .animate-scanline {
-        animation: scanline 2.5s linear infinite;
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: var(--color-accent);
     }
 }
