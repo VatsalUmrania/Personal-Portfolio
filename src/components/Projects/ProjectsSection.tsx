@@ -23,11 +23,12 @@ const ProjectsSection = () => {
                             key={project.id}
                             layoutId={`project-${project.id}`}
                             onClick={() => setSelectedId(project.id)}
-                            className="group cursor-pointer bg-surface border border-border-color p-6 relative hover:border-accent/50 transition-colors duration-200 flex flex-col h-full rounded-sm"
+                            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                            className="group cursor-pointer bg-surface border border-border-color p-6 relative hover:shadow-lg transition-all duration-200 flex flex-col h-full rounded-sm"
                         >
                             <div className="flex justify-between items-start mb-6">
                                 <div /> 
-                                <FiMaximize2 className="text-text-muted opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <FiMaximize2 className="text-text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                             </div>
                             
                             <div className="mb-6">
@@ -48,10 +49,10 @@ const ProjectsSection = () => {
                             </div>
 
                             <div className="mt-auto pt-4 border-t border-border-color/50 flex items-center justify-end">
-                                <button className="flex items-center gap-2 text-sm text-text-muted group-hover:text-text-primary transition-colors">
-                                    <span>View Details</span>
+                                <span className="flex items-center gap-2 text-sm text-text-muted group-hover:text-text-primary transition-colors duration-200 opacity-50 group-hover:opacity-100">
+                                    <span>View Case Study</span>
                                     <FiArrowRight />
-                                </button>
+                                </span>
                             </div>
                         </motion.div>
                     ))}
@@ -65,17 +66,20 @@ const ProjectsSection = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
                             onClick={() => setSelectedId(null)}
-                            className="absolute inset-0 bg-bg-primary/90 backdrop-blur-sm pointer-events-auto"
+                            className="absolute inset-0 bg-bg-primary/90 backdrop-blur-sm pointer-events-auto cursor-pointer"
                         />
                         
                         <motion.div
                             layoutId={`project-${selectedId}`}
+                            transition={{ duration: 0.3 }}
                             className="w-full max-w-5xl max-h-full overflow-y-auto bg-bg-primary border border-border-color shadow-2xl relative pointer-events-auto rounded-md custom-scrollbar"
                         >
                             <button
                                 onClick={(e) => { e.stopPropagation(); setSelectedId(null); }}
-                                className="sticky top-4 right-4 float-right z-50 p-2 bg-surface hover:bg-error hover:text-white text-text-muted transition-colors border border-border-color rounded-full"
+                                className="sticky top-4 right-4 float-right z-50 p-2 bg-surface text-text-muted hover:text-text-primary hover:bg-white/10 hover:rotate-90 transition-all duration-200 border border-border-color rounded-full"
+                                aria-label="Close modal"
                             >
                                 <FiX size={20} />
                             </button>

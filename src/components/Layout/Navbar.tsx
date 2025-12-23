@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { FiDownload, FiMenu, FiX } from 'react-icons/fi';
 
@@ -7,6 +7,7 @@ export const Navbar = () => {
     const [hidden, setHidden] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('hero');
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         const previous = scrollY.getPrevious() ?? 0;
@@ -14,11 +15,31 @@ export const Navbar = () => {
         setScrolled(latest > 50);
     });
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = ['hero', 'projects', 'skills', 'contact'];
+            const scrollPosition = window.scrollY + 200; // Offset for better triggering
+
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const { offsetTop, offsetHeight } = element;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        setActiveSection(section);
+                    }
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     const navLinks = [
-        { name: 'Home', href: '#hero' },
-        { name: 'Work', href: '#projects' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'Home', href: '#hero', id: 'hero' },
+        { name: 'Work', href: '#projects', id: 'projects' },
+        { name: 'Skills', href: '#skills', id: 'skills' },
+        { name: 'Contact', href: '#contact', id: 'contact' },
     ];
 
     const scrollTo = (id: string) => {
@@ -61,12 +82,18 @@ export const Navbar = () => {
                             Vatsal Umrania
                         </button>
 
-                        <nav className="hidden md:flex items-center gap-6">
+                        <nav className="hidden md:flex items-center gap-2">
                             {navLinks.slice(1).map((link) => (
                                 <button
                                     key={link.name}
                                     onClick={() => scrollTo(link.href)}
-                                    className="text-sm text-text-muted hover:text-text-primary transition-colors"
+                                    className={`
+                                        text-sm px-3 py-1.5 rounded-full transition-colors duration-200
+                                        ${activeSection === link.id 
+                                            ? 'text-text-primary font-medium' 
+                                            : 'text-text-muted hover:bg-white/10 hover:text-text-primary'
+                                        }
+                                    `}
                                 >
                                     {link.name}
                                 </button>
@@ -108,7 +135,10 @@ export const Navbar = () => {
                                 <button
                                     key={link.name}
                                     onClick={() => scrollTo(link.href)}
-                                    className="text-lg font-medium text-text-primary text-left py-2 border-b border-border-color/50"
+                                    className={`
+                                        text-lg font-medium text-left py-2 border-b border-border-color/50
+                                        ${activeSection === link.id ? 'text-accent' : 'text-text-primary'}
+                                    `}
                                 >
                                     {link.name}
                                 </button>

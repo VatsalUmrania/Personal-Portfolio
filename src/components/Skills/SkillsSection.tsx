@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { skillGroups } from '../../data/skills';
 import { ScrollReveal } from '../UI/ScrollReveal';
 
@@ -18,16 +17,16 @@ const SkillsSection = () => {
                             <h3 className="text-sm font-medium text-text-muted mb-6 border-b border-border-color pb-2">
                                 {group.category}
                             </h3>
-                            <div className="flex flex-col gap-3">
+                            <div className="flex flex-col gap-2">
                                 {group.skills.map((skill, sIdx) => (
                                     <div
                                         key={sIdx}
-                                        className="flex items-center gap-3 py-1"
+                                        className="flex items-center gap-3 p-2 rounded-sm transition-colors duration-200 hover:bg-white/5 cursor-default group"
                                     >
-                                        <div className="text-text-muted">
+                                        <div className="text-text-muted group-hover:text-text-primary transition-colors">
                                             {skill.icon && <skill.icon size={18} />}
                                         </div>
-                                        <span className="text-sm text-text-primary">{skill.name}</span>
+                                        <span className="text-sm text-text-primary group-hover:text-white transition-colors">{skill.name}</span>
                                     </div>
                                 ))}
                             </div>

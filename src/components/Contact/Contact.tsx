@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { siteConfig } from '../../data/site';
-import { FiArrowUpRight, FiMail, FiGithub, FiLinkedin } from 'react-icons/fi';
+import { FiArrowUpRight, FiMail, FiGithub, FiLinkedin, FiCheck, FiCopy } from 'react-icons/fi';
 
 const Contact = () => {
     return (
@@ -21,11 +22,8 @@ const Contact = () => {
             </div>
 
             <div className="flex-1 flex flex-col justify-center gap-2 border-t border-border-color pt-6">
-                <ContactLink 
-                    icon={FiMail}
-                    label="Email" 
-                    value={siteConfig.contact.email} 
-                    href={`mailto:${siteConfig.contact.email}`} 
+                <EmailContactLink 
+                    email={siteConfig.contact.email}
                 />
                 <ContactLink 
                     icon={FiGithub}
@@ -41,6 +39,40 @@ const Contact = () => {
                 />
             </div>
         </motion.div>
+    );
+};
+
+const EmailContactLink = ({ email }: { email: string }) => {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(email);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
+    return (
+        <button
+            onClick={handleCopy}
+            className="flex items-center justify-between p-3 rounded-md border border-transparent hover:border-border-color hover:bg-white/5 transition-all group w-full text-left"
+        >
+            <div className="flex items-center gap-4">
+                <div className={`w-8 h-8 rounded flex items-center justify-center transition-colors ${copied ? 'text-accent' : 'text-text-muted group-hover:text-accent'}`}>
+                    {copied ? <FiCheck size={18} /> : <FiMail size={18} />}
+                </div>
+                <div>
+                    <div className="text-xs text-text-muted mb-0.5">
+                        Email
+                    </div>
+                    <div className="text-sm text-text-primary">
+                        {copied ? "Copied to clipboard!" : email}
+                    </div>
+                </div>
+            </div>
+            <div className={`text-text-muted transition-colors ${copied ? 'text-accent' : 'group-hover:text-accent'}`}>
+                {copied ? <FiCheck /> : <FiCopy />}
+            </div>
+        </button>
     );
 };
 
