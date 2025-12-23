@@ -33,7 +33,7 @@ const Hero = () => {
                 
                 <motion.h1 variants={item} className="text-4xl md:text-7xl font-medium leading-tight mb-8 text-text-primary max-w-5xl">
                     <span className="block text-text-muted text-2xl md:text-3xl mb-2 font-mono">
-                        &gt; role: full-stack engineer | systems-focused
+                        &gt; role: full-stack engineer
                     </span>
                     I build scalable distributed<br />
                     systems & <span className="text-transparent bg-clip-text bg-linear-to-r from-accent to-white">intelligent agents.</span>

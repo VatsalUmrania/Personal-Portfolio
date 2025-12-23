@@ -78,7 +78,7 @@ export const projects: Project[] = [
     },
     {
         id: 2,
-        title: 'VeriChain Platform',
+        title: 'Blockchain Based Document Verification',
         subtitle: 'Decentralized Identity & Verification',
         techStack: [
             { name: 'Solidity', icon: SiSolidity },

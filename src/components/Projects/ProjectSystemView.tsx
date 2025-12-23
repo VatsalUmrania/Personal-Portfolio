@@ -70,7 +70,7 @@ const ProjectSystemView = ({ project }: { project: Project }) => {
                     className="h-80 w-full border border-border-color bg-bg-primary relative rounded-sm overflow-hidden group"
                 >
                     <div className="absolute top-3 left-3 z-10 font-mono text-xs text-text-muted bg-bg-primary px-2 py-1 border border-border-color">
-                        FIG 1.0 - SYSTEM ARCHITECTURE
+                        SYSTEM ARCHITECTURE
                     </div>
                     
                     {/* ReactFlow Component */}
