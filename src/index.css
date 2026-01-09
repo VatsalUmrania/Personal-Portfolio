@@ -8,8 +8,10 @@
     --color-text-primary: #f0f0f0;
     --color-text-muted: #8b929e;
     --color-accent: #647a96;
+    --color-accent-secondary: #6366f1;
     --color-error: #ef4444;
     --color-warning: #f59e0b;
+    --color-success: #10b981;
 
     /* Spacing */
     --spacing-container-x: 6vw;
@@ -28,6 +30,17 @@
     .font-mono {
         font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
     }
+
+    /* Smooth scroll behavior */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Focus visible styles for accessibility */
+    *:focus-visible {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+    }
 }
 
 @layer components {
@@ -44,5 +57,91 @@
     }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: var(--color-accent);
+    }
+
+    /* Gradient text */
+    .gradient-text {
+        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Glass effect */
+    .glass {
+        background: rgba(20, 23, 28, 0.8);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Animated gradient border */
+    .animated-border {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .animated-border::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        padding: 1px;
+        border-radius: inherit;
+        background: linear-gradient(135deg, var(--color-accent), var(--color-accent-secondary), var(--color-accent));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: border-rotate 3s linear infinite;
+    }
+
+    @keyframes border-rotate {
+        0% {
+            filter: hue-rotate(0deg);
+        }
+        100% {
+            filter: hue-rotate(360deg);
+        }
+    }
+
+    /* Scanline animation */
+    .animate-scanline {
+        animation: scanline 3s ease-in-out infinite;
+    }
+
+    @keyframes scanline {
+        0%, 100% {
+            transform: translateY(-100%);
+        }
+        50% {
+            transform: translateY(100%);
+        }
+    }
+
+    /* Floating animation */
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    /* Pulse glow */
+    .animate-glow {
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from {
+            box-shadow: 0 0 5px var(--color-accent);
+        }
+        to {
+            box-shadow: 0 0 20px var(--color-accent), 0 0 30px var(--color-accent-secondary);
+        }
     }
 }

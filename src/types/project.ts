@@ -1,5 +1,17 @@
-import { Node, Edge } from '@xyflow/react';
 import { IconType } from 'react-icons';
+
+export interface ArchitectureNode {
+    id: string;
+    position: { x: number; y: number };
+    data: { label: string };
+}
+
+export interface ArchitectureEdge {
+    id: string;
+    source: string;
+    target: string;
+    label?: string;
+}
 
 export interface TechStackItem {
     name: string;
@@ -38,8 +50,8 @@ export interface Project {
     githubUrl: string;
     liveUrl?: string;
     architecture: {
-        nodes: Node[];
-        edges: Edge[];
+        nodes: ArchitectureNode[];
+        edges: ArchitectureEdge[];
     };
     caseStudy: CaseStudy;
 }

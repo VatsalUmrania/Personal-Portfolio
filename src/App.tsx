@@ -10,19 +10,19 @@ function App() {
     return (
         <main className="min-h-screen bg-bg-primary selection:bg-accent selection:text-white pb-24">
             <Navbar />
-            
+
             <div id="hero">
                 <Hero />
             </div>
-            
+
             <div id="projects">
                 <ProjectsSection />
             </div>
-            
+
             <div id="skills">
                 <SkillsSection />
             </div>
-            
+
             <EngineeringPhilosophy />
 
             <div id="contact" className="px-container-x max-w-7xl mx-auto mt-24">
@@ -31,6 +31,13 @@ function App() {
                     <Contact />
                 </div>
             </div>
+
+            {/* Footer */}
+            <footer className="px-container-x py-8 border-t border-border-color mt-24 text-center">
+                <p className="text-sm text-text-muted">
+                    © 2025 Vatsal Umrania. Built with React & TypeScript.
+                </p>
+            </footer>
         </main>
     );
 }

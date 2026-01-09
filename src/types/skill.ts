@@ -4,6 +4,7 @@ export interface Skill {
     name: string;
     filterTag: string;
     icon?: IconType;
+    proficiency?: number;
 }
 
 export interface SkillGroup {

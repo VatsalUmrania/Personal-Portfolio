@@ -2,6 +2,14 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { siteConfig } from '../../data/site';
 import { FiArrowUpRight, FiMail, FiGithub, FiLinkedin, FiCheck, FiCopy } from 'react-icons/fi';
+import { IconType } from 'react-icons';
+
+interface ContactLinkProps {
+    icon: IconType;
+    label: string;
+    value: string;
+    href: string;
+}
 
 const Contact = () => {
     return (
@@ -76,7 +84,7 @@ const EmailContactLink = ({ email }: { email: string }) => {
     );
 };
 
-const ContactLink = ({ icon: Icon, label, value, href }: any) => (
+const ContactLink = ({ icon: Icon, label, value, href }: ContactLinkProps) => (
     <a 
         href={href}
         target="_blank"
