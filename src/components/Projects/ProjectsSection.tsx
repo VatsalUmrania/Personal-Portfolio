@@ -1,30 +1,67 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from '../../data/projects';
 import ProjectSystemView from './ProjectSystemView';
 import { FiMaximize2, FiX, FiArrowRight } from 'react-icons/fi';
 import { ScrollReveal } from '../UI/ScrollReveal';
+import ProjectFilter from '../UI/ProjectFilter';
 
 const ProjectsSection = () => {
     const [selectedId, setSelectedId] = useState<number | null>(null);
+    const [activeFilter, setActiveFilter] = useState<string>('all');
+
+    const filteredProjects = activeFilter === 'all'
+        ? projects
+        : projects.filter(project => project.tags.includes(activeFilter));
+
+    const handleKeyDown = (event: React.KeyboardEvent, projectId: number) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            setSelectedId(projectId);
+        }
+    };
+
+    const handleEscapeKey = (event: KeyboardEvent) => {
+        if (event.key === 'Escape' && selectedId !== null) {
+            setSelectedId(null);
+        }
+    };
+
+    useEffect(() => {
+        if (selectedId !== null) {
+            document.addEventListener('keydown', handleEscapeKey);
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.removeEventListener('keydown', handleEscapeKey);
+            document.body.style.overflow = 'unset';
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleEscapeKey);
+            document.body.style.overflow = 'unset';
+        };
+    }, [selectedId]);
 
     return (
         <section className="px-container-x py-24 bg-bg-primary relative">
             <ScrollReveal>
-                <div className="flex items-end justify-between mb-12 border-b border-border-color pb-4">
+                <div className="flex items-end justify-between mb-8 border-b border-border-color pb-4">
                     <h2 className="text-2xl font-medium text-text-primary">
                         Selected Work
                     </h2>
                 </div>
 
+                <ProjectFilter activeFilter={activeFilter} onFilterChange={setActiveFilter} />
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {projects.map((project) => (
-                        <motion.div
+                    {filteredProjects.map((project) => (
+                        <motion.button
                             key={project.id}
                             layoutId={`project-${project.id}`}
                             onClick={() => setSelectedId(project.id)}
+                            onKeyDown={(e) => handleKeyDown(e, project.id)}
                             whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                            className="group cursor-pointer bg-surface border border-border-color p-6 relative hover:shadow-lg transition-all duration-200 flex flex-col h-full rounded-sm"
+                            className="group cursor-pointer bg-surface border border-border-color p-6 relative hover:shadow-lg transition-all duration-200 flex flex-col h-full rounded-sm text-left focus:outline-none focus:ring-2 focus:ring-accent"
                         >
                             <div className="flex justify-between items-start mb-6">
                                 <div /> 
@@ -54,7 +91,7 @@ const ProjectsSection = () => {
                                     <FiArrowRight />
                                 </span>
                             </div>
-                        </motion.div>
+                        </motion.button>
                     ))}
                 </div>
             </ScrollReveal>

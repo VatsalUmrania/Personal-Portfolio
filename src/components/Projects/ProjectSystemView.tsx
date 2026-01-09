@@ -1,13 +1,95 @@
 import { motion } from 'framer-motion';
 import { Project } from '../../types/project';
-import { FiAlertTriangle, FiCheckCircle, FiXCircle, FiGithub, FiExternalLink } from 'react-icons/fi';
+import { FiAlertTriangle, FiCheckCircle, FiXCircle, FiGithub, FiExternalLink, FiCpu, FiDatabase, FiGlobe, FiLayers, FiCloud, FiTerminal } from 'react-icons/fi';
+import { IconType } from 'react-icons';
 
-const itemVars = {
-    hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0 }
+const getIconForNode = (label: string): IconType => {
+    const lowerLabel = label.toLowerCase();
+    if (lowerLabel.includes('llm') || lowerLabel.includes('ai')) return FiCpu;
+    if (lowerLabel.includes('db') || lowerLabel.includes('mongo')) return FiDatabase;
+    if (lowerLabel.includes('user')) return FiGlobe;
+    if (lowerLabel.includes('sandbox') || lowerLabel.includes('vm')) return FiTerminal;
+    if (lowerLabel.includes('contract') || lowerLabel.includes('blockchain')) return FiLayers;
+    return FiCloud;
 };
 
 const ProjectSystemView = ({ project }: { project: Project }) => {
+    const renderArchitectureDiagram = () => {
+        const { nodes, edges } = project.architecture;
+
+        return (
+            <div className="bg-surface/50 border border-border-color rounded-sm p-6 mb-8">
+                <h4 className="text-sm font-medium text-text-primary mb-4">System Architecture</h4>
+                <div className="relative">
+                    <svg className="w-full h-64" viewBox="0 0 800 250">
+                        <defs>
+                            <marker id={`arrowhead-${project.id}`} markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#647a96" />
+                            </marker>
+                        </defs>
+
+                        {edges.map((edge) => {
+                            const source = nodes.find(n => n.id === edge.source);
+                            const target = nodes.find(n => n.id === edge.target);
+                            if (!source || !target) return null;
+
+                            const startX = source.position.x + 400;
+                            const startY = source.position.y + 40;
+                            const endX = target.position.x + 400;
+                            const endY = target.position.y + 40;
+
+                            return (
+                                <motion.path
+                                    key={edge.id}
+                                    d={`M ${startX} ${startY} Q ${(startX + endX) / 2} ${startY} ${endX} ${endY}`}
+                                    stroke="#647a96"
+                                    strokeWidth="2"
+                                    fill="none"
+                                    markerEnd={`url(#arrowhead-${project.id})`}
+                                    initial={{ pathLength: 0 }}
+                                    animate={{ pathLength: 1 }}
+                                    transition={{ duration: 1, delay: 0.5 }}
+                                />
+                            );
+                        })}
+
+                        {nodes.map((node) => {
+                            const Icon = getIconForNode(String(node.data.label));
+                            const x = node.position.x + 400;
+                            const y = node.position.y;
+
+                            return (
+                                <g key={node.id}>
+                                    <motion.rect
+                                        x={x - 60}
+                                        y={y}
+                                        width={120}
+                                        height={80}
+                                        rx={8}
+                                        fill="#14171c"
+                                        stroke="#242830"
+                                        strokeWidth="2"
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ duration: 0.5, delay: 0.3 }}
+                                    />
+                                    <foreignObject x={x - 50} y={y + 10} width={100} height={60}>
+                                        <div className="flex flex-col items-center justify-center h-full text-center">
+                                            <Icon size={24} className="text-accent mb-2" />
+                                            <span className="text-xs text-text-primary font-medium">
+                                                {String(node.data.label)}
+                                            </span>
+                                        </div>
+                                    </foreignObject>
+                                </g>
+                            );
+                        })}
+                    </svg>
+                </div>
+            </div>
+        );
+    };
+
     return (
         <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-12">
             {/* LEFT COLUMN: CONTEXT & METRICS */}
@@ -57,6 +139,9 @@ const ProjectSystemView = ({ project }: { project: Project }) => {
                         {project.caseStudy.summary}
                     </p>
                 </div>
+
+                {/* Architecture Diagram */}
+                {renderArchitectureDiagram()}
 
                 {/* Technical Decisions */}
                 <div className="space-y-6">

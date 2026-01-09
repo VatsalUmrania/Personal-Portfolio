@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { siteConfig } from '../../data/site';
-import profileImg from '../../../assests/photo1.jpg'; // Ensure this path is correct
+import profileImg from '../../../assests/photo1.jpg';
 
 const About = () => {
     return (
@@ -16,9 +16,10 @@ const About = () => {
                 <div className="relative shrink-0">
                     {/* Photo Frame */}
                     <div className="w-20 h-20 rounded-md overflow-hidden border border-white/10 grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <img 
-                            src={profileImg} 
-                            alt="Profile" 
+                        <img
+                            src={profileImg}
+                            alt="Vatsal Umrania - Profile Photo"
+                            loading="lazy"
                             className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-linear-to-b from-transparent via-accent/10 to-transparent h-[200%] w-full animate-scanline pointer-events-none" />

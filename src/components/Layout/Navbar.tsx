@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { FiDownload, FiMenu, FiX } from 'react-icons/fi';
+import ScrollProgress from '../UI/ScrollProgress';
 
 export const Navbar = () => {
     const { scrollY } = useScroll();
@@ -52,6 +53,7 @@ export const Navbar = () => {
 
     return (
         <>
+            <ScrollProgress />
             <AnimatePresence>
                 <motion.header
                     variants={{

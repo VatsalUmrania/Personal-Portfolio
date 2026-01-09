@@ -1,5 +1,6 @@
 import { skillGroups } from '../../data/skills';
 import { ScrollReveal } from '../UI/ScrollReveal';
+import { motion } from 'framer-motion';
 
 const SkillsSection = () => {
     return (
@@ -17,17 +18,9 @@ const SkillsSection = () => {
                             <h3 className="text-sm font-medium text-text-muted mb-6 border-b border-border-color pb-2">
                                 {group.category}
                             </h3>
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-4">
                                 {group.skills.map((skill, sIdx) => (
-                                    <div
-                                        key={sIdx}
-                                        className="flex items-center gap-3 p-2 rounded-sm transition-colors duration-200 hover:bg-white/5 cursor-default group"
-                                    >
-                                        <div className="text-text-muted group-hover:text-text-primary transition-colors">
-                                            {skill.icon && <skill.icon size={18} />}
-                                        </div>
-                                        <span className="text-sm text-text-primary group-hover:text-white transition-colors">{skill.name}</span>
-                                    </div>
+                                    <SkillItem key={sIdx} skill={skill} index={sIdx} />
                                 ))}
                             </div>
                         </div>
@@ -37,4 +30,34 @@ const SkillsSection = () => {
         </section>
     );
 };
+
+const SkillItem = ({ skill, index }: { skill: any; index: number }) => {
+    return (
+        <div className="group">
+            <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-3 p-2 rounded-sm transition-colors duration-200 hover:bg-white/5 cursor-default">
+                    <div className="text-text-muted group-hover:text-text-primary transition-colors">
+                        {skill.icon && <skill.icon size={18} />}
+                    </div>
+                    <span className="text-sm text-text-primary group-hover:text-white transition-colors">{skill.name}</span>
+                </div>
+                {skill.proficiency && (
+                    <span className="text-xs text-text-muted font-mono">{skill.proficiency}%</span>
+                )}
+            </div>
+            {skill.proficiency && (
+                <div className="w-full h-1 bg-border-color rounded-full overflow-hidden ml-12">
+                    <motion.div
+                        className="h-full bg-accent rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.proficiency}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: index * 0.1 }}
+                    />
+                </div>
+            )}
+        </div>
+    );
+};
+
 export default SkillsSection;
