@@ -1,51 +1,475 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Vatsal Umrania - Full-Stack Engineer</title>
-  <meta name="description" content="Full-Stack Engineer specializing in distributed systems, AI agents, and blockchain development. View Vatsal's portfolio of production-grade systems." />
-  <meta name="keywords" content="Full-Stack Engineer, React, Next.js, AI Agents, Blockchain, TypeScript, Distributed Systems" />
-  <meta name="author" content="Vatsal Umrania" />
-  <meta name="robots" content="index, follow" />
-  
-  <link rel="canonical" href="https://yourdomain.com" />
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Vatsal Umrania - Full-Stack Engineer" />
-  <meta property="og:description" content="Building scalable distributed systems & intelligent agents" />
-  <meta property="og:image" content="https://yourdomain.com/og-image.jpg" />
-  <meta property="og:url" content="https://yourdomain.com" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Vatsal Umrania - Full-Stack Engineer" />
-  <meta name="twitter:description" content="Building scalable distributed systems & intelligent agents" />
-  <meta name="twitter:image" content="https://yourdomain.com/og-image.jpg" />
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Vatsal Umrania",
-    "jobTitle": "Full-Stack Engineer",
-    "url": "https://yourdomain.com",
-    "sameAs": [
-      "https://github.com/VatsalUmrania",
-      "https://linkedin.com/in/vatsal-umrania"
-    ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Freelance"
-    }
-  }
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vatsal Umrania — Cinematic Portfolio</title>
+  <meta name="description"
+    content="A cinematic portfolio experience showcasing innovative web development projects with cutting-edge animations">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
+
+  <!-- Smooth Scrolling Wrapper -->
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- Skip to main content -->
+      <a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+      <!-- Film Grain Overlay -->
+      <div class="film-grain"></div>
+
+      <!-- Vignette Effect -->
+      <div class="vignette"></div>
+
+      <!-- Custom Cursor -->
+      <div class="custom-cursor"></div>
+      <div class="cursor-follower"></div>
+
+      <!-- Light Leak SVG -->
+      <svg class="light-leak" aria-hidden="true">
+        <defs>
+          <radialGradient id="leak-glow">
+            <stop offset="0%" stop-color="#FF6B6B" stop-opacity="0.8" />
+            <stop offset="100%" stop-color="#4ECDC4" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <ellipse class="light-leak-ellipse" cx="50%" cy="50%" rx="40%" ry="30%" fill="url(#leak-glow)" />
+      </svg>
+
+      <!-- Navigation -->
+      <nav class="nav" role="navigation">
+        <div class="nav__container">
+          <a href="#" class="nav__logo" aria-label="Home">VU</a>
+          <div class="nav__links">
+            <a href="#about" class="nav__link nav-item">About</a>
+            <a href="#projects" class="nav__link nav-item">Projects</a>
+            <a href="#skills" class="nav__link nav-item">Skills</a>
+            <a href="#contact" class="nav__link nav-item">Contact</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main id="main-content">
+
+        <!-- Hero Section -->
+        <section class="hero" id="hero" data-scroll-section>
+          <div class="hero-background" data-scroll data-scroll-speed="-2">
+            <div class="background-image"></div>
+            <div class="gradient-overlay"></div>
+          </div>
+
+          <div class="hero-content" data-scroll data-scroll-speed="1">
+            <h1 class="hero-title">
+              <span class="first-name">Vatsal</span>
+              <span class="last-name">Umrania</span>
+            </h1>
+            <div class="hero-subtitle">
+              <span class="typing-text">Full Stack Engineer</span>
+            </div>
+            <p class="hero-description">
+              Building type-safe, real-time systems with a focus on scalable architecture and clean APIs.
+            </p>
+            <div class="hero-cta">
+              <a href="#projects" class="btn btn--primary">View Projects</a>
+              <a href="#contact" class="btn btn--secondary">Get in Touch</a>
+            </div>
+          </div>
+
+          <div class="scroll-indicator">
+            <svg class="scroll-chevron" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+              <path d="M15 20 L20 15 L15 10" stroke="currentColor" stroke-width="2" fill="none" />
+              <path d="M10 20 L15 15 L10 10" stroke="currentColor" stroke-width="2" fill="none" />
+            </svg>
+            <span>Scroll to explore</span>
+          </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about" data-scroll-section>
+          <div class="about-background parallax-layer" data-depth="0.2"></div>
+          <div class="container">
+            <div class="section-header">
+              <span class="section-label">About Me</span>
+              <h2 class="section-title">Software Engineer & Full-Stack Developer</h2>
+            </div>
+            <div class="about-content parallax-layer" data-depth="1">
+              <div class="about-text">
+                <p class="about-intro">
+                  Undergraduate studying <strong>Information Technology</strong> at K.J. Somaiya Institute of
+                  Technology (2027). My engineering focus: <strong>type safety through tRPC and Prisma</strong>,
+                  <strong>real-time systems using WebSockets</strong>, and <strong>durable workflow
+                    orchestration</strong>.
+                </p>
+                <p>
+                  I've built AI-powered code generators, blockchain verification platforms, and collaborative editors —
+                  each designed for production reliability, not just demonstrations. I write code that ships.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience-section" id="experience" data-scroll-section>
+          <div class="container">
+            <div class="section-header">
+              <span class="section-label">Professional Journey</span>
+              <h2 class="section-title">Work Experience</h2>
+            </div>
+            <div class="experience-timeline">
+
+              <!-- Experience Item 1 -->
+              <div class="experience-item">
+                <div class="experience-meta">
+                  <div class="experience-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                  </div>
+                  <div class="experience-company">Mass International Logistics</div>
+                  <div class="experience-date">May - Jul 2025</div>
+                  <div class="experience-location">Dammam, Saudi Arabia</div>
+                </div>
+                <div class="experience-details">
+                  <h3 class="experience-title">Software Engineer Intern</h3>
+                  <ul class="experience-highlights">
+                    <li>Built and deployed core logistics platform modules using React and Node.js, handling shipment
+                      tracking and inventory workflows</li>
+                    <li>Optimized REST API response times through MySQL query indexing and Express middleware
+                      refactoring</li>
+                    <li>Developed internal React dashboards for real-time logistics visualization, replacing manual
+                      spreadsheet reporting</li>
+                    <li>Collaborated with cross-functional teams to scope requirements and deliver features on schedule
+                    </li>
+                  </ul>
+                  <div class="experience-tech">
+                    <span class="tech-tag">React.js</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Express.js</span>
+                    <span class="tech-tag">MySQL</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+
+        <!-- Projects Section -->
+        <section class="projects-section" id="projects" data-scroll-section>
+          <div class="container">
+            <div class="section-header">
+              <span class="section-label">Featured Work</span>
+              <h2 class="section-title">Projects That Matter</h2>
+            </div>
+            <div class="projects-timeline">
+
+              <!-- Project 1: Vibe (Right) -->
+              <article class="project-item project-item--right">
+                <div class="project-content">
+                  <div class="project-header">
+                    <div class="project-icon">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path
+                          d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                      </svg>
+                    </div>
+                    <span class="project-tag">AI Platform</span>
+                  </div>
+                  <h3 class="project-title">Vibe — AI Web Application Builder</h3>
+                  <span class="project-date-label">Jul - Oct 2025</span>
+                  <p class="project-description">
+                    Converts natural language prompts into deployable Next.js applications with real-time preview and
+                    virtual file system.
+                    Implements sandboxed remote code execution via E2B and orchestrates multi-step AI workflows using
+                    Inngest for durable, long-running task handling.
+                    Backend is fully type-safe with tRPC and Prisma, with Clerk handling authentication.
+                  </p>
+                  <div class="project-tech">
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">tRPC</span>
+                    <span class="tech-tag">Prisma</span>
+                    <span class="tech-tag">Inngest</span>
+                    <span class="tech-tag">E2B</span>
+                    <span class="tech-tag">Clerk Auth</span>
+                  </div>
+                  <a href="https://github.com/VatsalUmrania" target="_blank" rel="noopener noreferrer"
+                    class="view-button">
+                    View Project →
+                  </a>
+                </div>
+              </article>
+
+              <!-- Project 2: Blockchain (Left) -->
+              <article class="project-item project-item--left">
+                <div class="project-content">
+                  <div class="project-header">
+                    <div class="project-icon">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                    </div>
+                    <span class="project-tag">Blockchain</span>
+                  </div>
+                  <h3 class="project-title">Blockchain Document Verification Platform</h3>
+                  <span class="project-date-label">Jun - Sep 2025</span>
+                  <p class="project-description">
+                    Decentralized platform for tamper-proof document validation using Ethereum smart contracts.
+                    Solidity contracts handle on-chain verification with MetaMask wallet integration.
+                    MongoDB backend scales to handle concurrent verification requests with optimized document indexing.
+                  </p>
+                  <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Web3.js</span>
+                    <span class="tech-tag">Solidity</span>
+                    <span class="tech-tag">MetaMask</span>
+                    <span class="tech-tag">MongoDB</span>
+                  </div>
+                  <a href="https://github.com/VatsalUmrania" target="_blank" rel="noopener noreferrer"
+                    class="view-button">
+                    View Project →
+                  </a>
+                </div>
+              </article>
+
+              <!-- Project 3: CollabIDE (Right) -->
+              <article class="project-item project-item--right">
+                <div class="project-content">
+                  <div class="project-header">
+                    <div class="project-icon">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                      </svg>
+                    </div>
+                    <span class="project-tag">Real-time</span>
+                  </div>
+                  <h3 class="project-title">CollabIDE — Real-Time Collaborative Code Editor</h3>
+                  <span class="project-date-label">Dec 2024 - Feb 2025</span>
+                  <p class="project-description">
+                    Real-time collaborative code editor achieving sub-200ms synchronization using Socket.IO
+                    bidirectional communication.
+                    Implements OAuth + JWT authentication with role-based access control via Prisma and PostgreSQL.
+                    Monaco Editor integration provides multi-language syntax highlighting with live presence indicators.
+                  </p>
+                  <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Socket.IO</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Prisma</span>
+                    <span class="tech-tag">Monaco Editor</span>
+                    <span class="tech-tag">JWT</span>
+                  </div>
+                  <a href="https://github.com/VatsalUmrania" target="_blank" rel="noopener noreferrer"
+                    class="view-button">
+                    View Project →
+                  </a>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section" id="skills" data-scroll-section>
+          <div class="container">
+            <div class="section-header">
+              <span class="section-label">Technical Expertise</span>
+              <h2 class="section-title">Skills & Technologies</h2>
+            </div>
+            <div class="skills-grid">
+              <div class="skill-category">
+                <h3 class="skill-category-title">Frontend</h3>
+                <div class="skill-tags">
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" width="16" height="16">
+                    React
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js" width="16" height="16">
+                    Next.js
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" width="16" height="16">
+                    TypeScript
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind CSS" width="16" height="16">
+                    Tailwind CSS
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/greensock/88CE02" alt="GSAP" width="16" height="16">
+                    GSAP
+                  </span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h3 class="skill-category-title">Backend</h3>
+                <div class="skill-tags">
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/nodedotjs/339933" alt="Node.js" width="16" height="16">
+                    Node.js
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/express/000000" alt="Express.js" width="16" height="16">
+                    Express.js
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/trpc/2596BE" alt="tRPC" width="16" height="16">
+                    tRPC
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/prisma/2D3748" alt="Prisma" width="16" height="16">
+                    Prisma
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/socketdotio/010101" alt="WebSockets" width="16" height="16">
+                    WebSockets
+                  </span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h3 class="skill-category-title">Database</h3>
+                <div class="skill-tags">
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL" width="16" height="16">
+                    PostgreSQL
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/mongodb/47A248" alt="MongoDB" width="16" height="16">
+                    MongoDB
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/mysql/4479A1" alt="MySQL" width="16" height="16">
+                    MySQL
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/redis/DC382D" alt="Redis" width="16" height="16">
+                    Redis
+                  </span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h3 class="skill-category-title">DevOps & Cloud</h3>
+                <div class="skill-tags">
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" width="16" height="16">
+                    Docker
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/amazonaws/232F3E" alt="AWS" width="16" height="16">
+                    AWS
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel" width="16" height="16">
+                    Vercel
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="CI/CD" width="16" height="16">
+                    CI/CD
+                  </span>
+                  <span class="skill-tag">
+                    <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" width="16" height="16">
+                    Git
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact" data-scroll-section>
+          <div class="container">
+            <div class="section-header">
+              <span class="section-label">Get in Touch</span>
+              <h2 class="section-title">Let's Build Something Amazing</h2>
+            </div>
+            <div class="contact-content">
+              <p class="contact-text">
+                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              </p>
+              <div class="contact-links">
+                <a href="https://github.com/VatsalUmrania" target="_blank" rel="noopener noreferrer"
+                  class="contact-card">
+                  <div class="">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-card-label">GitHub</div>
+                    <div class="contact-card-value">@VatsalUmrania</div>
+                  </div>
+                </a>
+                <a href="https://linkedin.com/in/vatsal-umrania" target="_blank" rel="noopener noreferrer"
+                  class="contact-card">
+                  <div class="">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-card-label">LinkedIn</div>
+                    <div class="contact-card-value">Vatsal Umrania</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+          <p>&copy; 2026 Vatsal Umrania. Built with GSAP.</p>
+        </div>
+      </footer>
+
+      <!-- Transition Overlay -->
+      <div class="transition-overlay"></div>
+
+    </div><!-- #smooth-content -->
+  </div><!-- #smooth-wrapper -->
+
+  <!-- GSAP Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollSmoother.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrambleTextPlugin.min.js"></script>
+  <script src="script.js"></script>
+
 </body>
 
 </html>

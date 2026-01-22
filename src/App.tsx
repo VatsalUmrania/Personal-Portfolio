@@ -1,45 +1,53 @@
-import { Navbar } from './components/Layout/Navbar';
-import Hero from './components/Hero/Hero';
-import ProjectsSection from './components/Projects/ProjectsSection';
-import SkillsSection from './components/Skills/SkillsSection';
-import EngineeringPhilosophy from './components/Engineering/EngineeringPhilosophy';
-import About from './components/About/About';
-import Contact from './components/Contact/Contact';
+import React from 'react';
+import { useGSAP } from './hooks/useGSAP';
+import { useSmoothScroll } from './hooks/useSmoothScroll';
+import { Navigation } from './components/layout/Navigation';
+import { Footer } from './components/layout/Footer';
+import { HeroSection } from './components/sections/HeroSection';
+import { AboutSection } from './components/sections/AboutSection';
+import { ExperienceSection } from './components/sections/ExperienceSection';
+import { ProjectsSection } from './components/sections/ProjectsSection';
+import { SkillsSection } from './components/sections/SkillsSection';
+import { ContactSection } from './components/sections/ContactSection';
+import { CustomCursor } from './components/effects/CustomCursor';
+import { FilmGrain } from './components/effects/FilmGrain';
+import { Vignette } from './components/effects/Vignette';
+import { TransitionOverlay } from './components/effects/TransitionOverlay';
 
-function App() {
-    return (
-        <main className="min-h-screen bg-bg-primary selection:bg-accent selection:text-white pb-24">
-            <Navbar />
+const App: React.FC = () => {
+  // Initialize GSAP
+  useGSAP();
 
-            <div id="hero">
-                <Hero />
-            </div>
+  // Initialize Smooth Scroll
+  useSmoothScroll();
 
-            <div id="projects">
-                <ProjectsSection />
-            </div>
+  return (
+    <>
+      {/* Effects */}
+      <CustomCursor />
+      <FilmGrain />
+      <Vignette />
+      <TransitionOverlay />
 
-            <div id="skills">
-                <SkillsSection />
-            </div>
+      {/* Smooth Scroll Wrapper */}
+      <div id="smooth-wrapper">
+        <div id="smooth-content">
+          <Navigation />
 
-            <EngineeringPhilosophy />
+          <main id="main-content">
+            <HeroSection />
+            <AboutSection />
+            <ExperienceSection />
+            <ProjectsSection />
+            <SkillsSection />
+            <ContactSection />
+          </main>
 
-            <div id="contact" className="px-container-x max-w-7xl mx-auto mt-24">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-                    <About />
-                    <Contact />
-                </div>
-            </div>
-
-            {/* Footer */}
-            <footer className="px-container-x py-8 border-t border-border-color mt-24 text-center">
-                <p className="text-sm text-text-muted">
-                    © 2025 Vatsal Umrania. Built with React & TypeScript.
-                </p>
-            </footer>
-        </main>
-    );
-}
+          <Footer />
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default App;

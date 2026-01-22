@@ -1,0 +1,67 @@
+/* ============================================
+   CSS CUSTOM PROPERTIES / DESIGN TOKENS
+   ============================================ */
+
+:root {
+    /* Startup-Ready Color Palette - Professional & Execution-Focused */
+    --color-bg-deep: #FFFFFF;
+    --color-bg-navy: #FFFFFF;
+    --color-white: #111827;
+
+    /* Accent Colors - Single Professional Blue */
+    --color-accent-primary: #2563EB;
+    --color-text-secondary: #4B5563;
+    --color-text-muted: #6B7280;
+
+    /* Legacy colors */
+    --color-red: #FF2E63;
+    --color-teal: #2563EB;
+    --color-amber: #FFD166;
+    --color-purple: #9D00FF;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(180deg, rgba(244, 247, 246, 0) 0%, rgba(244, 247, 246, 0.6) 50%, #F4F7F6 100%);
+    --gradient-transition: linear-gradient(90deg, #FF2E63 0%, #08D9D6 100%);
+    --gradient-card: radial-gradient(circle at top right, rgba(255, 46, 99, 0.08), rgba(8, 217, 214, 0.08));
+
+    /* Typography */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Playfair Display', serif;
+    --font-code: 'Fira Code', monospace;
+
+    /* Spacing (8px base) */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-xxl: 4rem;
+
+    /* Responsive font scale */
+    --font-scale: 1;
+    --spacing-scale: 1;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    :root {
+        --font-scale: 1.1;
+        --spacing-scale: 1.2;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    :root {
+        --font-scale: 1.25;
+        --spacing-scale: 1.5;
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+    :root {
+        --font-scale: 1.5;
+        --spacing-scale: 2;
+    }
+}

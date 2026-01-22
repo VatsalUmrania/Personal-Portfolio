@@ -1,47 +1,43 @@
-import { SkillGroup } from '../types/skill';
-import {
-    SiJavascript,
-    SiTypescript,
-    SiPython,
-    SiSolidity,
-    SiReact,
-    SiNodedotjs,
-    SiTrpc,
-    SiSocketdotio,
-    SiTailwindcss,
-    SiAmazonwebservices,
-    SiPostgresql,
-    SiMongodb,
-    SiRedis
-} from 'react-icons/si';
+import type { SkillCategory } from '../types/skill';
 
-export const skillGroups: SkillGroup[] = [
+export const skillsData: SkillCategory[] = [
     {
-        category: 'Languages & Core',
+        title: "Frontend",
         skills: [
-            { name: 'JavaScript (ES6+)', filterTag: 'react', icon: SiJavascript, proficiency: 95 },
-            { name: 'TypeScript', filterTag: 'node', icon: SiTypescript, proficiency: 90 },
-            { name: 'Python', filterTag: 'ai', icon: SiPython, proficiency: 75 },
-            { name: 'Solidity', filterTag: 'blockchain', icon: SiSolidity, proficiency: 70 },
-        ],
+            { name: "React", icon: "https://cdn.simpleicons.org/react/61DAFB" },
+            { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/000000" },
+            { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
+            { name: "Tailwind CSS", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
+            { name: "GSAP", icon: "https://cdn.simpleicons.org/greensock/88CE02" }
+        ]
     },
     {
-        category: 'Web Stack',
+        title: "Backend",
         skills: [
-            { name: 'React / Next.js', filterTag: 'nextjs', icon: SiReact, proficiency: 95 },
-            { name: 'Node.js', filterTag: 'node', icon: SiNodedotjs, proficiency: 90 },
-            { name: 'tRPC', filterTag: 'trpc', icon: SiTrpc, proficiency: 80 },
-            { name: 'Socket.IO', filterTag: 'socketio', icon: SiSocketdotio, proficiency: 85 },
-            { name: 'Tailwind CSS', filterTag: 'react', icon: SiTailwindcss, proficiency: 95 },
-        ],
+            { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs/339933" },
+            { name: "Express.js", icon: "https://cdn.simpleicons.org/express/000000" },
+            { name: "tRPC", icon: "https://cdn.simpleicons.org/trpc/2596BE" },
+            { name: "Prisma", icon: "https://cdn.simpleicons.org/prisma/2D3748" },
+            { name: "WebSockets", icon: "https://cdn.simpleicons.org/socketdotio/010101" }
+        ]
     },
     {
-        category: 'Cloud & Databases',
+        title: "Database",
         skills: [
-            { name: 'AWS / Docker', filterTag: 'cloud', icon: SiAmazonwebservices, proficiency: 80 },
-            { name: 'PostgreSQL / Prisma', filterTag: 'postgres', icon: SiPostgresql, proficiency: 85 },
-            { name: 'MongoDB', filterTag: 'blockchain', icon: SiMongodb, proficiency: 85 },
-            { name: 'Redis', filterTag: 'real-time', icon: SiRedis, proficiency: 75 },
-        ],
+            { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql/4169E1" },
+            { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb/47A248" },
+            { name: "MySQL", icon: "https://cdn.simpleicons.org/mysql/4479A1" },
+            { name: "Redis", icon: "https://cdn.simpleicons.org/redis/DC382D" }
+        ]
     },
+    {
+        title: "DevOps & Cloud",
+        skills: [
+            { name: "Docker", icon: "https://cdn.simpleicons.org/docker/2496ED" },
+            { name: "AWS", icon: "https://cdn.simpleicons.org/amazonaws/232F3E" },
+            { name: "Vercel", icon: "https://cdn.simpleicons.org/vercel/000000" },
+            { name: "CI/CD", icon: "https://cdn.simpleicons.org/githubactions/2088FF" },
+            { name: "Git", icon: "https://cdn.simpleicons.org/git/F05032" }
+        ]
+    }
 ];

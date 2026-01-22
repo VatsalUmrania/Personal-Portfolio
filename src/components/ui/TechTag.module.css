@@ -1,0 +1,26 @@
+.techTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(37, 99, 235, 0.1);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    border-radius: 100px;
+    color: var(--color-accent-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.techTag:hover {
+    background: rgba(37, 99, 235, 0.15);
+    border-color: var(--color-accent-primary);
+    transform: translateY(-2px);
+}
+
+.techTag img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}

@@ -1,0 +1,73 @@
+.contactSection {
+    position: relative;
+    overflow: hidden;
+}
+
+.contactContent {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contactText {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-xl);
+    line-height: 1.6;
+}
+
+.contactLinks {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+}
+
+.contactCard {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--color-bg-navy);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--color-white);
+    transition: all 0.3s ease;
+    min-width: 250px;
+}
+
+.contactCard:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-teal);
+    box-shadow: 0 10px 30px rgba(8, 217, 214, 0.15);
+}
+
+.contactCardIcon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(37, 99, 235, 0.1);
+    border-radius: 12px;
+    color: var(--color-accent-primary);
+}
+
+.contactCardInfo {
+    text-align: left;
+}
+
+.contactCardLabel {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.contactCardValue {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
