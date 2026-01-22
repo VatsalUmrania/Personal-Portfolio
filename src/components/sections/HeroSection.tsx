@@ -167,10 +167,7 @@ export const HeroSection: React.FC = () => {
                 <p className={styles.heroDescription}>
                     Building type-safe, real-time systems with a focus on scalable architecture and clean APIs.
                 </p>
-                <div className={styles.heroCta}>
-                    <Button href="#projects" variant="primary">View Projects</Button>
-                    <Button href="#contact" variant="secondary">Get in Touch</Button>
-                </div>
+
             </div>
 
             <div className={styles.scrollIndicator}>
