@@ -5,7 +5,6 @@ import SplitText from 'gsap/SplitText';
 // @ts-ignore
 import ScrambleTextPlugin from 'gsap/ScrambleTextPlugin';
 import { EASING, prefersReducedMotion } from '../../utils/gsapConfig';
-import { Button } from '../ui/Button';
 import styles from './HeroSection.module.css';
 
 gsap.registerPlugin(SplitText, ScrambleTextPlugin);
