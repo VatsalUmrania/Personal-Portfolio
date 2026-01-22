@@ -1,11 +1,6 @@
-@import './styles/variables.css';
-@import './styles/global.css';
+@import "tailwindcss";
 
-/* Tailwind base imports if needed, but we are using custom CSS modules mostly. 
-   If the project was using Tailwind, we keep it. 
-   The package.json has tailwindcss.
-   Let's keep the standard Tailwind directives just in case. 
-*/
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+html,
+body {
+  overflow: hidden;
+}
