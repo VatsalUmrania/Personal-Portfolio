@@ -193,17 +193,19 @@ if (!prefersReducedMotion) {
         .from('.typing-text', {
             duration: 1.5,
             scrambleText: {
-                text: "Full Stack Engineer",
-                chars: "Random",
+                text: "I Build Scalable Real-Time Web Products",
+                chars: "upperAndLowerCase",
                 revealDelay: 0.5,
-                tweenLength: false
+                tweenLength: true,
+                rightToLeft: true,
             },
             opacity: 0 // Fade in while scrambling
         }, '-=0.5')
         .from('.hero-description', {
             opacity: 0,
             y: 30,
-            duration: 0.8
+            duration: 0.8,
+            ease: "power2.out"
         }, '-=0.5')
         .from('.btn', {
             opacity: 0,
@@ -799,6 +801,141 @@ const perfObserver = new PerformanceObserver((list) => {
 if ('PerformanceObserver' in window) {
     perfObserver.observe({ entryTypes: ['measure'] });
 }
+
+// ============================================
+// MOBILE NAVIGATION
+// ============================================
+
+const mobileToggle = document.querySelector('.nav__toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+const mobileLinks = document.querySelectorAll('.mobile-menu__link');
+const body = document.body;
+
+let mobileMenuOpen = false;
+
+function openMobileMenu() {
+    mobileMenuOpen = true;
+    mobileToggle.classList.add('active');
+    mobileToggle.setAttribute('aria-expanded', 'true');
+
+    // Prevent body scroll
+    body.style.overflow = 'hidden';
+
+    // Activate overlay and menu
+    mobileOverlay.classList.add('active');
+    mobileMenu.classList.add('active');
+
+    // Animate with GSAP if available
+    if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+        gsap.to(mobileMenu, {
+            right: 0,
+            duration: 0.3,
+            ease: 'power2.out'
+        });
+
+        gsap.to(mobileOverlay, {
+            opacity: 1,
+            duration: 0.3
+        });
+
+        // Stagger menu links - Use fromTo to ensure opacity reaches 1
+        gsap.fromTo('.mobile-menu__link',
+            { x: 50, opacity: 0 },
+            {
+                x: 0,
+                opacity: 1,
+                stagger: 0.1,
+                duration: 0.3,
+                delay: 0.1,
+                clearProps: "opacity" // Ensure specific styles are removed after animation
+            }
+        );
+    }
+}
+
+function closeMobileMenu() {
+    mobileMenuOpen = false;
+    mobileToggle.classList.remove('active');
+    mobileToggle.setAttribute('aria-expanded', 'false');
+
+    // Re-enable body scroll
+    body.style.overflow = '';
+
+    // Deactivate overlay and menu
+    mobileOverlay.classList.remove('active');
+    mobileMenu.classList.remove('active');
+
+    // Animate with GSAP if available
+    if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+        gsap.to(mobileMenu, {
+            right: '-100%',
+            duration: 0.3,
+            ease: 'power2.in'
+        });
+
+        gsap.to(mobileOverlay, {
+            opacity: 0,
+            duration: 0.3
+        });
+    }
+}
+
+// Toggle button click
+if (mobileToggle) {
+    mobileToggle.addEventListener('click', () => {
+        if (mobileMenuOpen) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+    });
+}
+
+// Overlay click to close
+if (mobileOverlay) {
+    mobileOverlay.addEventListener('click', closeMobileMenu);
+}
+
+// Menu link clicks
+mobileLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+
+        // Close menu
+        closeMobileMenu();
+
+        // Scroll to target after a short delay
+        setTimeout(() => {
+            if (target) {
+                if (smoother) {
+                    smoother.scrollTo(target, true, "top 80px");
+                } else {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }, 300);
+    });
+});
+
+// Close menu on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenuOpen) {
+        closeMobileMenu();
+    }
+});
+
+// Close menu on window resize if it gets too wide
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && mobileMenuOpen) {
+        closeMobileMenu();
+    }
+});
 
 // Toggle animations control (optional)
 const toggleAnimations = (enabled) => {
